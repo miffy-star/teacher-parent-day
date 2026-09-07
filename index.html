@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>高一2班 親師座談會</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #0ea5e9;
+      --accent: #f59e0b;
+      --accent2: #10b981;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --border: #e2e8f0;
+      --shadow: 0 4px 24px rgba(37,99,235,0.08);
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border); padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px; box-shadow: 0 2px 12px rgba(37,99,235,0.07);
+    }
+    .nav-brand { font-weight: 700; font-size: 1.1rem; color: var(--primary); }
+    .nav-links { display: flex; gap: 4px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--text-light);
+      padding: 6px 14px; border-radius: 8px;
+      font-size: 0.88rem; font-weight: 500; transition: all 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { background: #eff6ff; color: var(--primary); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(180deg,
+          rgba(255,255,255,0.18) 0%,
+          rgba(255,255,255,0.10) 50%,
+          rgba(255,255,255,0.22) 100%),
+        url('hero_bg.jpg') center center / cover no-repeat;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 80px 24px 60px;
+      position: relative;
+    }
+    .hero-badge {
+      display: inline-block; background: rgba(255,255,255,0.75); color: #1e40af;
+      border-radius: 999px; padding: 6px 22px; font-size: 0.85rem; font-weight: 700;
+      margin-bottom: 22px; border: 1px solid rgba(255,255,255,0.9);
+      box-shadow: 0 2px 12px rgba(37,99,235,0.15);
+    }
+    .hero h1 {
+      font-size: clamp(3rem, 10vw, 6rem); font-weight: 900; color: #1e293b;
+      line-height: 1.2; margin-bottom: 16px;
+      text-shadow: 0 2px 16px rgba(255,255,255,0.8);
+    }
+    .hero p { color: #334155; font-size: 1.05rem; max-width: 520px; margin: 0 auto 40px;
+      font-weight: 600; text-shadow: 0 1px 8px rgba(255,255,255,0.9); }
+    .hero-cards { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+    .hero-card {
+      background: rgba(255,255,255,0.80); border: 1px solid rgba(255,255,255,0.95);
+      border-radius: 14px; padding: 16px 24px; color: #1e40af;
+      text-decoration: none; transition: all 0.2s;
+      box-shadow: 0 4px 16px rgba(37,99,235,0.10);
+    }
+    .hero-card:hover { background: rgba(255,255,255,0.95); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(37,99,235,0.18); }
+    .hero-card .emoji { font-size: 1.6rem; display: block; margin-bottom: 6px; }
+    .hero-card span { font-size: 0.88rem; font-weight: 700; }
+
+    /* LAYOUT */
+    .sec { padding: 80px 24px; max-width: 1100px; margin: 0 auto; }
+    .sec-alt { padding: 80px 0; background: #f0f9ff; }
+    .sec-alt-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    .section-header { text-align: center; margin-bottom: 48px; }
+    .section-tag {
+      display: inline-block; background: #eff6ff; color: var(--primary);
+      border-radius: 999px; padding: 4px 18px; font-size: 0.8rem; font-weight: 700;
+      letter-spacing: 0.08em; margin-bottom: 12px;
+    }
+    .section-header h2 { font-size: clamp(1.7rem, 3vw, 2.3rem); font-weight: 800; }
+    .section-header p { color: var(--text-light); margin-top: 10px; }
+
+    .card {
+      background: var(--card); border-radius: var(--radius);
+      box-shadow: var(--shadow); border: 1px solid var(--border); padding: 28px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(37,99,235,0.12); }
+
+    /* TEACHER */
+    .teacher-wrap { display: grid; grid-template-columns: 300px 1fr; gap: 24px; align-items: start; }
+    .teacher-profile {
+      background: linear-gradient(145deg, #1e40af, #2563eb 60%, #0ea5e9);
+      border-radius: var(--radius); padding: 36px 28px;
+      color: #fff; display: flex; flex-direction: column; align-items: center; text-align: center;
+    }
+     .avatar {
+      width: 110px; height: 110px; border-radius: 50%;
+      border: 4px solid rgba(255,255,255,0.55);
+      object-fit: cover; margin-bottom: 18px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.22);
+    }
+    .teacher-name { font-size: 1.5rem; font-weight: 800; }
+    .teacher-en   { font-size: 1rem; opacity: 0.8; margin-bottom: 6px; }
+    .teacher-sub  { font-size: 0.85rem; opacity: 0.75; margin-bottom: 20px; }
+    .t-tag {
+      display: inline-block; background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3); border-radius: 999px;
+      padding: 3px 13px; font-size: 0.78rem; font-weight: 600; margin: 3px;
+    }
+    .edu-list { list-style: none; }
+    .edu-list li {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 11px 0; border-bottom: 1px solid var(--border);
+    }
+    .edu-list li:last-child { border-bottom: none; }
+    .edu-icon {
+      width: 34px; height: 34px; border-radius: 8px;
+      background: #eff6ff; color: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .edu-title { font-weight: 600; font-size: 0.95rem; }
+    .edu-sub { font-size: 0.8rem; color: var(--text-light); margin-top: 2px; }
+
+    /* SCHEDULE */
+    .schedule-table { width: 100%; border-collapse: collapse; }
+    .schedule-table th, .schedule-table td {
+      padding: 13px 18px; text-align: left;
+      border-bottom: 1px solid var(--border); font-size: 0.92rem;
+    }
+    .schedule-table th { background: #f1f5f9; font-weight: 700; color: var(--text-light); font-size: 0.82rem; letter-spacing: .04em; }
+    .schedule-table tr:last-child td { border-bottom: none; }
+    .schedule-table tr:hover td { background: #f8fafc; }
+    .time-badge {
+      display: inline-block; background: #eff6ff; color: var(--primary);
+      border-radius: 6px; padding: 3px 10px; font-size: 0.8rem; font-weight: 700; font-family: monospace;
+    }
+
+    /* 9th PERIOD PILLS */
+    .period-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 16px;
+    }
+    .period-pill {
+      border-radius: 12px; padding: 14px 10px; text-align: center;
+      border: 1px solid; transition: transform 0.15s;
+    }
+    .period-pill:hover { transform: translateY(-2px); }
+    .period-pill .day { font-size: 0.72rem; font-weight: 700; letter-spacing: .06em; margin-bottom: 6px; opacity: 0.7; }
+    .period-pill .subj { font-size: 0.95rem; font-weight: 800; }
+    .pp-blue   { background: #eff6ff; border-color: #bfdbfe; color: #1d4ed8; }
+    .pp-green  { background: #f0fdf4; border-color: #bbf7d0; color: #15803d; }
+    .pp-amber  { background: #fffbeb; border-color: #fde68a; color: #b45309; }
+    .pp-purple { background: #fdf4ff; border-color: #e9d5ff; color: #7e22ce; }
+    .pp-teal   { background: #f0fdfa; border-color: #99f6e4; color: #0f766e; }
+
+    /* COOPERATION */
+    .coop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
+    .coop-item {
+      background: #f8fafc; border-radius: 12px; padding: 18px 20px;
+      border: 1px solid var(--border); transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .coop-item:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(37,99,235,0.09); }
+    .coop-item.highlight { background: #fffbeb; border-color: #fde68a; grid-column: 1 / -1; }
+    .coop-icon { font-size: 1.3rem; margin-bottom: 8px; }
+    .coop-title { font-weight: 700; font-size: 0.92rem; margin-bottom: 4px; }
+    .coop-desc { font-size: 0.83rem; color: var(--text-light); }
+    .coop-item.highlight .coop-desc { color: #92400e; font-size: 0.9rem; }
+
+    /* ADMISSION TABS */
+    .tabs { display: flex; gap: 8px; margin-bottom: 26px; flex-wrap: wrap; }
+    .tab-btn {
+      padding: 9px 20px; border-radius: 999px; border: 2px solid var(--border);
+      background: var(--card); color: var(--text-light);
+      font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
+    }
+    .tab-btn.active {
+      background: var(--primary); color: #fff; border-color: var(--primary);
+      box-shadow: 0 4px 12px rgba(37,99,235,0.28);
+    }
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; animation: fadeUp 0.3s ease; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .info-box { background: #f8fafc; border-radius: 12px; border: 1px solid var(--border); padding: 20px; }
+    .info-box h4 { font-size: 0.82rem; font-weight: 700; color: var(--text-light); margin-bottom: 12px; letter-spacing: .05em; text-transform: uppercase; }
+    .step-list { list-style: none; }
+    .step-list li { display: flex; gap: 10px; align-items: flex-start; padding: 7px 0; font-size: 0.9rem; }
+    .step-num {
+      width: 22px; height: 22px; border-radius: 50%; background: var(--primary); color: #fff;
+      font-size: 0.72rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;
+    }
+    .step-num.mark { background: var(--accent2); }
+    .warn-box {
+      background: #fffbeb; border: 1px solid #fde68a;
+      border-radius: 10px; padding: 13px 16px; margin-top: 14px;
+      display: flex; gap: 10px; align-items: flex-start; font-size: 0.88rem;
+    }
+    .exam-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .exam-chip { border-radius: 8px; padding: 5px 13px; font-size: 0.86rem; font-weight: 600; border: 1px solid; }
+    .ec-blue  { background: #eff6ff; border-color: #bfdbfe; color: var(--primary); }
+    .ec-green { background: #f0fdf4; border-color: #bbf7d0; color: var(--accent2); }
+
+    /* SUBJECTS */
+    .subject-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 20px; }
+    .subject-card {
+      background: var(--card); border-radius: var(--radius);
+      border: 1px solid var(--border); overflow: hidden;
+      box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .subject-card:hover { transform: translateY(-4px); box-shadow: 0 10px 36px rgba(37,99,235,0.13); }
+    .subject-header { padding: 20px 22px; display: flex; align-items: center; gap: 14px; }
+    .subject-icon {
+      width: 46px; height: 46px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0;
+    }
+    .subject-name { font-size: 1.15rem; font-weight: 800; }
+    .subject-body { padding: 0 22px 22px; }
+    .method-list { list-style: none; }
+    .method-list li {
+      padding: 7px 0; font-size: 0.89rem; color: var(--text);
+      display: flex; gap: 9px; align-items: flex-start;
+      border-bottom: 1px solid var(--border);
+    }
+    .method-list li:last-child { border-bottom: none; }
+    .method-list li::before { content: '✦'; color: var(--primary); flex-shrink: 0; font-size: 0.65rem; margin-top: 5px; }
+
+    footer {
+      background: #1e293b; color: rgba(255,255,255,0.6);
+      text-align: center; padding: 44px 24px;
+      font-size: 0.88rem; line-height: 2.2;
+    }
+    footer strong { color: #fff; }
+
+    @media (max-width: 760px) {
+      .nav-links { display: none; }
+      .teacher-wrap { grid-template-columns: 1fr; }
+      .info-grid { grid-template-columns: 1fr; }
+      .period-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">🏫 高一2班 親師座談會</div>
+  <ul class="nav-links">
+    <li><a href="teacher.html">導師介紹</a></li>
+    <li><a href="#daily">班級日常</a></li>
+    <li><a href="#coop">親師合作</a></li>
+    <li><a href="admission.html">升學介紹</a></li>
+    <li><a href="#methods">讀書方法</a></li>
+    <li><a href="calendar.html">行事曆</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="hero-badge">📋 親師座談會</div>
+    <h1>高一2班</h1>
+    <p>瀛海中學 · 感謝家長的陪伴與支持 ❤️</p>
+    <div class="hero-cards">
+      <a href="teacher.html"   class="hero-card"><span class="emoji">👩‍🏫</span><span>導師介紹</span></a>
+      <a href="#daily"         class="hero-card"><span class="emoji">🕐</span><span>班級日常</span></a>
+      <a href="#coop"          class="hero-card"><span class="emoji">🤝</span><span>親師合作</span></a>
+      <a href="admission.html" class="hero-card"><span class="emoji">🎓</span><span>升學介紹</span></a>
+      <a href="#methods"       class="hero-card"><span class="emoji">📚</span><span>讀書方法</span></a>
+      <a href="calendar.html"  class="hero-card"><span class="emoji">📅</span><span>行事曆</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- 01 導師介紹 -->
+<div id="teacher" class="sec">
+  <div class="section-header">
+    <div class="section-tag">01 TEACHER</div>
+    <h2>導師介紹</h2>
+    <p>高一2班導師</p>
+  </div>
+  <div class="teacher-wrap">
+    <div class="teacher-profile">
+      <img src="導師頭像.png" alt="Miffy 老師" class="avatar">
+      <div class="teacher-name">Miffy 老師</div>
+      <div class="teacher-en">Lin Ming-Fen</div>
+      <div class="teacher-sub">高一2班導師</div>
+      <div>
+        <span class="t-tag">英語教學</span>
+        <span class="t-tag">國際教育</span>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="font-size:1.05rem;font-weight:700;color:var(--primary);margin-bottom:20px">學歷與經歷</h3>
+      <ul class="edu-list">
+        <li>
+          <div class="edu-icon">🎓</div>
+          <div>
+            <div class="edu-title">輔仁大學英語系</div>
+            <div class="edu-sub">英語語言文學學士</div>
+          </div>
+        </li>
+        <li>
+          <div class="edu-icon">📖</div>
+          <div>
+            <div class="edu-title">中正大學外文所</div>
+            <div class="edu-sub">外國語文學研究所</div>
+          </div>
+        </li>
+        <li>
+          <div class="edu-icon">📖</div>
+          <div>
+            <div class="edu-title">中正大學英語教學所</div>
+            <div class="edu-sub">英語教學研究所</div>
+          </div>
+        </li>
+        <li>
+          <div class="edu-icon">🌏</div>
+          <div>
+            <div class="edu-title">新加坡南洋理工大學（NTU）</div>
+            <div class="edu-sub">National Institute of Education · 進修英語教學</div>
+          </div>
+        </li>
+        <li>
+          <div class="edu-icon">🏆</div>
+          <div>
+            <div class="edu-title">瀛海中學導師</div>
+            <div class="edu-sub">深耕雙語教育 · 與國外校際合作線上教學計畫入選，2025 於師大發表</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 02 班級日常 -->
+<div id="daily" class="sec-alt">
+  <div class="sec-alt-inner">
+    <div class="section-header">
+      <div class="section-tag">02 DAILY LIFE</div>
+      <h2>班級日常</h2>
+      <p>每日作息時間表與第九節安排</p>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <h3 style="font-size:1.05rem;font-weight:700;color:var(--primary);margin-bottom:18px">🕐 每日作息時間表</h3>
+      <table class="schedule-table">
+        <thead>
+          <tr><th>時段</th><th>事項</th><th>說明</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="time-badge">07:30 – 08:00</span></td>
+            <td><strong>早自習</strong></td>
+            <td>導師確認同學是否準時到班或請假</td>
+          </tr>
+          <tr>
+            <td><span class="time-badge">07:50</span></td>
+            <td><strong>手機繳交</strong></td>
+            <td>07:50 繳交手機，統一保管至放學</td>
+          </tr>
+          <tr>
+            <td><span class="time-badge">11:55 – 12:25</span></td>
+            <td><strong>午餐</strong></td>
+            <td>導師陪同午餐，上課時段不定時巡查班級</td>
+          </tr>
+          <tr>
+            <td><span class="time-badge">12:25 – 12:55</span></td>
+            <td><strong>午休</strong></td>
+            <td>全程安靜午休</td>
+          </tr>
+          <tr>
+            <td><span class="time-badge">17:28</span></td>
+            <td><strong>開啟手機櫃</strong></td>
+            <td>17:28 開啟手機櫃，放學後取回手機</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3 style="font-size:1.05rem;font-weight:700;color:var(--primary);margin-bottom:6px">📅 第九節安排</h3>
+      <p style="font-size:0.88rem;color:var(--text-light);margin-bottom:16px">每週一至週五第九節課程科目</p>
+      <div class="period-grid">
+        <div class="period-pill pp-blue">
+          <div class="day">MON｜週一</div>
+          <div class="subj">地理</div>
+        </div>
+        <div class="period-pill pp-green">
+          <div class="day">TUE｜週二</div>
+          <div class="subj">國文</div>
+        </div>
+        <div class="period-pill pp-amber">
+          <div class="day">WED｜週三</div>
+          <div class="subj">歷史</div>
+        </div>
+        <div class="period-pill pp-purple">
+          <div class="day">THU｜週四</div>
+          <div class="subj">閱讀</div>
+        </div>
+        <div class="period-pill pp-teal">
+          <div class="day">FRI｜週五</div>
+          <div class="subj">英文</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 03 親師合作 -->
+<div id="coop" class="sec">
+  <div class="section-header">
+    <div class="section-tag">03 COOPERATION</div>
+    <h2>親師合作建議</h2>
+    <p>家長與老師攜手，共同陪伴孩子成長</p>
+  </div>
+  <div class="coop-grid">
+    <div class="coop-item">
+      <div class="coop-icon">🌅</div>
+      <div class="coop-title">良好的生活習慣</div>
+      <div class="coop-desc">早睡早起，規律作息，讓孩子保持充沛體力面對學習</div>
+    </div>
+    <div class="coop-item">
+      <div class="coop-icon">📚</div>
+      <div class="coop-title">積極的學習態度</div>
+      <div class="coop-desc">今日事今日畢，鼓勵大量閱讀，培養主動學習的習慣</div>
+    </div>
+    <div class="coop-item">
+      <div class="coop-icon">💪</div>
+      <div class="coop-title">心理支持不可少</div>
+      <div class="coop-desc">孩子表現好與壞，均給予正面的支持和鼓勵，避免過度施壓</div>
+    </div>
+    <div class="coop-item">
+      <div class="coop-icon">🤝</div>
+      <div class="coop-title">互相信任、尊重的親師溝通</div>
+      <div class="coop-desc">遇到問題，家長與老師保持開放的溝通，共同找出解決方式</div>
+    </div>
+    <div class="coop-item">
+      <div class="coop-icon">💬</div>
+      <div class="coop-title">親子溝通無距離</div>
+      <div class="coop-desc">與子女保持良好的溝通，讓他知道家人關心他，並在需要時給予幫忙</div>
+    </div>
+    <div class="coop-item">
+      <div class="coop-icon">🏫</div>
+      <div class="coop-title">親、師、校合作</div>
+      <div class="coop-desc">遇上問題時，給子女和自己一段適應期，讓孩子學習面對挫折</div>
+    </div>
+    <div class="coop-item highlight">
+      <div class="coop-icon">🌻</div>
+      <div class="coop-title" style="color:#b45309">Miffy 老師的話</div>
+      <div class="coop-desc">
+        「若不想做，總會找到一個藉口；若想做，就會找到一個方法。」
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 04 升學介紹 -->
+<div id="admission" class="sec-alt">
+  <div class="sec-alt-inner">
+    <div class="section-header">
+      <div class="section-tag">04 ADMISSION</div>
+      <h2>升學介紹</h2>
+      <p>大學多元入學四大管道完整說明</p>
+    </div>
+
+    <!-- 考科摘要 -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:28px">
+      <div class="card" style="border-top:4px solid var(--primary)">
+        <h4 style="font-size:0.82rem;font-weight:700;color:var(--text-light);margin-bottom:12px;letter-spacing:.05em">📝 學測考科</h4>
+        <div class="exam-chips">
+          <span class="exam-chip ec-blue">國文</span>
+          <span class="exam-chip ec-blue">英文</span>
+          <span class="exam-chip ec-blue">數A</span>
+          <span class="exam-chip ec-blue">數B</span>
+          <span class="exam-chip ec-blue">社會</span>
+          <span class="exam-chip ec-blue">自然</span>
+        </div>
+        <div style="font-size:0.8rem;color:var(--text-light);margin-top:10px">各校系最多採計其中 4 科</div>
+      </div>
+      <div class="card" style="border-top:4px solid var(--accent2)">
+        <h4 style="font-size:0.82rem;font-weight:700;color:var(--text-light);margin-bottom:12px;letter-spacing:.05em">📝 分科測驗考科</h4>
+        <div class="exam-chips">
+          <span class="exam-chip ec-green">物理</span>
+          <span class="exam-chip ec-green">化學</span>
+          <span class="exam-chip ec-green">數甲</span>
+          <span class="exam-chip ec-green">生物</span>
+          <span class="exam-chip ec-green">歷史</span>
+          <span class="exam-chip ec-green">地理</span>
+          <span class="exam-chip ec-green">公民</span>
+        </div>
+        <div style="font-size:0.8rem;color:var(--text-light);margin-top:10px">可填 100 個志願</div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab(event,'special')">✨ 特殊選才</button>
+      <button class="tab-btn" onclick="switchTab(event,'star')">⭐ 繁星推薦</button>
+      <button class="tab-btn" onclick="switchTab(event,'apply')">📄 個人申請</button>
+      <button class="tab-btn" onclick="switchTab(event,'exam')">📝 分科測驗</button>
+    </div>
+
+    <!-- 特殊選才 -->
+    <div id="tab-special" class="tab-pane active">
+      <div class="card">
+        <h3 style="font-weight:700;margin-bottom:10px">✨ 特殊選才</h3>
+        <p style="color:var(--text-light);font-size:0.92rem;margin-bottom:16px">提供具特殊才能、特殊境遇或非典型背景學生的入學管道，各校自訂條件與審查方式。</p>
+        <ul class="step-list">
+          <li><div class="step-num">1</div><div>各大學自訂特選條件，學生備妥資料提出申請</div></li>
+          <li><div class="step-num">2</div><div>書面審查 → 各校自辦面試</div></li>
+          <li><div class="step-num">3</div><div>可至大學甄選委員會或各校官網查詢詳細規定</div></li>
+        </ul>
+        <div class="warn-box"><span>💡</span><div>各校每年公告時間不同，請持續關注並提早準備備審資料。</div></div>
+      </div>
+    </div>
+
+    <!-- 繁星推薦 -->
+    <div id="tab-star" class="tab-pane">
+      <div class="card">
+        <h3 style="font-weight:700;margin-bottom:8px">⭐ 繁星推薦</h3>
+        <div style="background:#eff6ff;border-radius:8px;padding:10px 16px;margin-bottom:16px;font-size:0.88rem;color:var(--primary)">
+          理念：高中均質、區域均衡，引導學生就近入學高中
+        </div>
+        <div class="info-grid">
+          <div class="info-box">
+            <h4>✅ 適合對象</h4>
+            <ul class="step-list">
+              <li><div class="step-num">1</div><div>高中各學期成績維持<strong>校排前 50%</strong></div></li>
+              <li><div class="step-num">2</div><div>採計 <strong>5 個學期</strong>（至高三上）</div></li>
+              <li><div class="step-num">3</div><div>對未來生涯規劃已有大致方向</div></li>
+              <li><div class="step-num">4</div><div>每位學生只能選<strong>一個學群</strong>報名</div></li>
+              <li><div class="step-num">5</div><div>新增「生活科技」與「資訊科技」科目</div></li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>📋 流程說明</h4>
+            <ul class="step-list">
+              <li><div class="step-num">1</div><div>學校依校排推薦符合資格學生</div></li>
+              <li><div class="step-num">2</div><div>繁星仍<strong>需要參加學測</strong></div></li>
+              <li><div class="step-num">3</div><div>依分發比序結果入學</div></li>
+            </ul>
+            <div class="warn-box"><span>⚠️</span><div><strong>重要！</strong>繁星錄取後無論有無放棄，皆<strong>不能參與個人申請</strong>！</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 個人申請 -->
+    <div id="tab-apply" class="tab-pane">
+      <div class="card">
+        <h3 style="font-weight:700;margin-bottom:8px">📄 個人申請入學</h3>
+        <div style="background:#f0fdf4;border-radius:8px;padding:10px 16px;margin-bottom:16px;font-size:0.88rem;color:var(--accent2)">
+          理念：學生依個人志趣選擇校系；大學依特色適性選才
+        </div>
+        <div class="info-grid" style="margin-bottom:16px">
+          <div class="info-box">
+            <h4>📋 三步驟流程</h4>
+            <ul class="step-list">
+              <li><div class="step-num">1</div><div><strong>先篩選</strong>：學測成績篩選（原則：招生名額 3 倍或 ≤ 50 名）</div></li>
+              <li><div class="step-num">2</div><div><strong>再甄試</strong>：審查資料上傳＋第二階段面試</div></li>
+              <li><div class="step-num">3</div><div><strong>後分發</strong>：第一階段＋第二階段成績加總分發</div></li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>📂 審查資料項目</h4>
+            <ul class="step-list">
+              <li><div class="step-num mark">✓</div><div>學習成果</div></li>
+              <li><div class="step-num mark">✓</div><div>社會探究報告</div></li>
+              <li><div class="step-num mark">✓</div><div>高中自主學習計畫與成果</div></li>
+              <li><div class="step-num mark">✓</div><div>學習歷程檔案（<strong>非常重要！</strong>）</div></li>
+            </ul>
+          </div>
+        </div>
+        <div class="warn-box"><span>📌</span><div>申請限制：最多申請 <strong>6 個校系</strong>。學習歷程檔案是甄試重要依據，請從高一就開始累積！</div></div>
+      </div>
+    </div>
+
+    <!-- 分科測驗 -->
+    <div id="tab-exam" class="tab-pane">
+      <div class="card">
+        <h3 style="font-weight:700;margin-bottom:8px">📝 分科測驗（考試入學）</h3>
+        <div style="background:#fff7ed;border-radius:8px;padding:10px 16px;margin-bottom:16px;font-size:0.88rem;color:#b45309">
+          理念：打破傳統類組概念，提供考生多元選擇及適性發展機會
+        </div>
+        <div class="info-grid">
+          <div class="info-box">
+            <h4>📋 考試說明</h4>
+            <ul class="step-list">
+              <li><div class="step-num">1</div><div>部分校系以學測成績作為「檢定」使用</div></li>
+              <li><div class="step-num">2</div><div>採計科目：3–5 科分科測驗成績</div></li>
+              <li><div class="step-num">3</div><div>考生至多可登記 <strong>100 個志願</strong></div></li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>⚠️ 應試注意事項</h4>
+            <ul class="step-list">
+              <li><div class="step-num">!</div><div>文具盒須<strong>無文字符號</strong>，墊板需透明</div></li>
+              <li><div class="step-num">!</div><div>無准考證，考試當日需攜帶<strong>有效證件正本</strong></div></li>
+              <li><div class="step-num">!</div><div>手錶不可發聲，也不可為智慧型裝置</div></li>
+            </ul>
+          </div>
+        </div>
+        <div class="warn-box" style="margin-top:14px"><span>💡</span><div>現階段最重要：<strong>加強國、英、數</strong>基礎實力，這是所有管道的共同核心！</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 05 各科讀書方法 -->
+<div id="methods" class="sec">
+  <div class="section-header">
+    <div class="section-tag">05 STUDY METHODS</div>
+    <h2>各科讀書方法</h2>
+    <p>各科任老師給同學的學習建議</p>
+  </div>
+  <div class="subject-grid">
+
+    <div class="subject-card">
+      <div class="subject-header" style="background:linear-gradient(135deg,#fff1f2,#ffe4e6)">
+        <div class="subject-icon" style="background:#fecdd3">📖</div>
+        <div class="subject-name">國文</div>
+      </div>
+      <div class="subject-body">
+        <ul class="method-list">
+          <li>多看、多聽、多想、細心觀察，用心生活</li>
+          <li>大量閱讀，常常寫作，培養語感</li>
+          <li>讓自己充滿想像，願意和他人分享生命的喜悅</li>
+          <li>養成固定閱讀習慣，多接觸國語文</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subject-card">
+      <div class="subject-header" style="background:linear-gradient(135deg,#eff6ff,#dbeafe)">
+        <div class="subject-icon" style="background:#bfdbfe">🔤</div>
+        <div class="subject-name">英文</div>
+      </div>
+      <div class="subject-body">
+        <ul class="method-list">
+          <li>每天接觸英文以培養語感，找有興趣的素材閱讀</li>
+          <li>多聽、多說、多讀、多寫，經常性接觸</li>
+          <li><strong>「單字才是王道」</strong>——持續累積單字量</li>
+          <li>以興趣為出發點，增進學習樂趣及效率</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subject-card">
+      <div class="subject-header" style="background:linear-gradient(135deg,#fdf4ff,#f3e8ff)">
+        <div class="subject-icon" style="background:#e9d5ff">➕</div>
+        <div class="subject-name">數學</div>
+      </div>
+      <div class="subject-body">
+        <ul class="method-list">
+          <li>上課專心聽講，勤做筆記</li>
+          <li>每天按時動手演練，<strong>不要只是用看的</strong></li>
+          <li>有疑惑要立即發問，多和同學討論</li>
+          <li>養成思考的習慣，在校專注更勝奔波補習</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subject-card">
+      <div class="subject-header" style="background:linear-gradient(135deg,#fffbeb,#fef3c7)">
+        <div class="subject-icon" style="background:#fde68a">⚡</div>
+        <div class="subject-name">物理</div>
+      </div>
+      <div class="subject-body">
+        <ul class="method-list">
+          <li>強調對觀念和定理的了解，不死記公式</li>
+          <li>多算、多問、多討論</li>
+          <li>建立正確物理概念，再延伸應用解題</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subject-card">
+      <div class="subject-header" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7)">
+        <div class="subject-icon" style="background:#bbf7d0">⚗️</div>
+        <div class="subject-name">化學</div>
+      </div>
+      <div class="subject-body">
+        <ul class="method-list">
+          <li>基本理論與化學式須先了解並熟記</li>
+          <li>掌握各單元觀念的核心理解</li>
+          <li>在記憶基礎上，善加推論與靈活運用</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subject-card">
+      <div class="subject-header" style="background:linear-gradient(135deg,#fff7ed,#ffedd5)">
+        <div class="subject-icon" style="background:#fed7aa">📜</div>
+        <div class="subject-name">歷史</div>
+      </div>
+      <div class="subject-body">
+        <ul class="method-list">
+          <li>培養良好的語文能力與閱讀習慣</li>
+          <li>建立時序觀念及思考分析能力</li>
+          <li>勤看地圖，著重概念統整，觀念須融會貫通</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subject-card">
+      <div class="subject-header" style="background:linear-gradient(135deg,#f0fdfa,#ccfbf1)">
+        <div class="subject-icon" style="background:#99f6e4">🗺️</div>
+        <div class="subject-name">地理</div>
+      </div>
+      <div class="subject-body">
+        <ul class="method-list">
+          <li>要喜歡地理，多觀察地圖，培養空間感</li>
+          <li>對圖表數據要多方研判、解讀</li>
+          <li>著重概念統整，觀念須融會貫通</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subject-card">
+      <div class="subject-header" style="background:linear-gradient(135deg,#fdf4ff,#f3e8ff)">
+        <div class="subject-icon" style="background:#ddd6fe">⚖️</div>
+        <div class="subject-name">公民</div>
+      </div>
+      <div class="subject-body">
+        <ul class="method-list">
+          <li>關心時事，了解社會脈動</li>
+          <li>多比較與思考，增廣人文知識</li>
+          <li>遇到學習問題，歡迎隨時提出討論</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subject-card">
+      <div class="subject-header" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7)">
+        <div class="subject-icon" style="background:#bbf7d0">🧬</div>
+        <div class="subject-name">生物</div>
+      </div>
+      <div class="subject-body">
+        <ul class="method-list">
+          <li>建立紮實的生物基礎知識</li>
+          <li>理解生命現象的原理與機制</li>
+          <li>配合課程進度，定期複習鞏固記憶</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subject-card">
+      <div class="subject-header" style="background:linear-gradient(135deg,#fff1f2,#ffe4e6)">
+        <div class="subject-icon" style="background:#fecdd3">🏃</div>
+        <div class="subject-name">體育</div>
+      </div>
+      <div class="subject-body">
+        <ul class="method-list">
+          <li>培養基本體能，維持規律運動習慣</li>
+          <li>學習對人的禮貌及尊重，展現運動家精神</li>
+          <li>正確的價值觀，讓各位越來越好</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div style="font-size:1.6rem;margin-bottom:10px">❤️</div>
+  <strong>高一2班</strong><br>
+  親師座談會<br>
+  <span style="color:rgba(255,255,255,0.4);font-size:0.82rem">瀛海中學</span>
+</footer>
+
+<script>
+  function switchTab(event, id) {
+    document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const anchors = ['teacher','daily','coop','admission','methods'];
+  window.addEventListener('scroll', () => {
+    let current = '';
+    anchors.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 80) current = id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>升學介紹 · 高一2班</title>
+  <style>
+    :root {
+      --primary:#2563eb;--sec:#0ea5e9;--accent:#f59e0b;--g:#10b981;
+      --bg:#f8fafc;--card:#fff;--text:#1e293b;--muted:#64748b;
+      --border:#e2e8f0;--shadow:0 4px 24px rgba(37,99,235,0.08);--r:16px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Noto Sans TC','Microsoft JhengHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.95);
+      backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 28px;
+      display:flex;align-items:center;justify-content:space-between;height:60px;
+      box-shadow:0 2px 12px rgba(37,99,235,0.07);}
+    .nb{font-weight:700;font-size:1.05rem;color:var(--primary);text-decoration:none;}
+    .back{text-decoration:none;color:var(--muted);font-size:.88rem;font-weight:500;
+      padding:6px 14px;border-radius:8px;transition:all .2s;}
+    .back:hover{background:#eff6ff;color:var(--primary);}
+
+    .hero{min-height:52vh;
+      background:linear-gradient(180deg,rgba(255,255,255,.20) 0%,rgba(255,255,255,.08) 60%,rgba(255,255,255,.25) 100%),
+      url('hero_bg.jpg') center 40%/cover no-repeat;
+      display:flex;align-items:flex-end;padding:100px 60px 52px;}
+    .hero-in{color:#1e293b;}
+    .h-tag{display:inline-block;background:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.95);
+      border-radius:999px;padding:4px 18px;font-size:.78rem;font-weight:700;letter-spacing:.1em;
+      margin-bottom:14px;color:#0f766e;}
+    .hero h1{font-size:clamp(2.4rem,6vw,4.5rem);font-weight:900;color:#1e293b;
+      text-shadow:0 2px 12px rgba(255,255,255,.9);}
+    .hero p{margin-top:8px;font-size:1rem;color:#334155;font-weight:600;
+      text-shadow:0 1px 8px rgba(255,255,255,.9);}
+
+    .body{max-width:1020px;margin:0 auto;padding:56px 28px 90px;}
+
+    /* SECTION LABEL */
+    .sl{font-size:.78rem;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;
+      margin:52px 0 22px;display:flex;align-items:center;gap:10px;}
+    .sl::after{content:'';flex:1;height:1px;background:var(--border);}
+    .sl:first-child{margin-top:0;}
+
+    /* CARD */
+    .card{background:var(--card);border-radius:var(--r);border:1px solid var(--border);
+      box-shadow:var(--shadow);padding:28px 32px;}
+
+    /* ① 入學途徑架構圖 */
+    .arch{display:flex;flex-direction:column;gap:0;}
+    .arch-row{display:flex;gap:12px;align-items:center;justify-content:center;margin:4px 0;}
+    .arch-label{font-size:.72rem;font-weight:700;color:var(--muted);letter-spacing:.08em;
+      width:80px;text-align:right;flex-shrink:0;}
+    .arch-boxes{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;flex:1;}
+    .abox{border-radius:10px;padding:10px 18px;text-align:center;font-size:.88rem;font-weight:700;
+      border:1.5px solid;flex:1;min-width:120px;max-width:200px;}
+    .ab-blue  {background:#eff6ff;border-color:#93c5fd;color:#1d4ed8;}
+    .ab-green {background:#f0fdf4;border-color:#86efac;color:#15803d;}
+    .ab-amber {background:#fff7ed;border-color:#fcd34d;color:#b45309;}
+    .ab-purple{background:#fdf4ff;border-color:#d8b4fe;color:#7e22ce;}
+    .ab-teal  {background:#f0fdfa;border-color:#5eead4;color:#0f766e;}
+    .ab-note  {font-size:.72rem;font-weight:400;margin-top:3px;opacity:.8;}
+    .arch-arrows{display:flex;justify-content:center;gap:10px;margin:2px 0;}
+    .arch-arrows span{font-size:1.3rem;color:var(--muted);flex:1;max-width:200px;min-width:120px;text-align:center;}
+    .arch-divider{width:100%;height:1px;background:var(--border);margin:10px 0;}
+    .arch-note{text-align:center;font-size:.78rem;color:var(--muted);margin-top:12px;line-height:1.6;}
+
+    /* ② 考試與管道對應 */
+    .scenario-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+    .sc-card{border-radius:14px;padding:22px;border:1.5px solid;}
+    .sc-card.blue {background:#eff6ff;border-color:#93c5fd;}
+    .sc-card.green{background:#f0fdf4;border-color:#86efac;}
+    .sc-card.both {background:linear-gradient(135deg,#eff6ff,#f0fdf4);border-color:#a5b4fc;}
+    .sc-if{font-size:.75rem;font-weight:700;letter-spacing:.06em;margin-bottom:6px;opacity:.7;}
+    .sc-exam{font-size:.95rem;font-weight:800;margin-bottom:12px;}
+    .sc-arr{font-size:1.4rem;margin-bottom:8px;display:block;}
+    .sc-paths{display:flex;flex-direction:column;gap:6px;}
+    .sc-path{border-radius:7px;padding:5px 12px;font-size:.82rem;font-weight:700;
+      display:inline-block;}
+    .sp-b{background:#dbeafe;color:#1d4ed8;}
+    .sp-g{background:#dcfce7;color:#15803d;}
+    .sp-p{background:#f3e8ff;color:#7e22ce;}
+    .sc-limit{font-size:.75rem;color:var(--muted);margin-top:8px;line-height:1.5;}
+
+    /* ④ 方案簡表 */
+    .comp-table{width:100%;border-collapse:collapse;font-size:.87rem;}
+    .comp-table th{padding:14px 14px;text-align:center;font-size:.88rem;font-weight:800;line-height:1.4;}
+    .comp-table td{padding:12px 14px;text-align:center;border-top:1px solid var(--border);
+      vertical-align:middle;color:var(--text);line-height:1.5;}
+    .comp-table tbody tr:hover td{background:#f8fafc;}
+    .rh{font-weight:700;font-size:.8rem;color:var(--muted);background:#f8fafc!important;
+      text-align:left!important;padding-left:16px!important;white-space:nowrap;}
+    .th-s{background:#eff6ff;color:#1d4ed8;}
+    .th-a{background:#f0fdf4;color:#15803d;}
+    .th-d{background:#fff7ed;color:#c2410c;}
+    .td-w{font-size:.8rem;color:#b45309;background:#fffbeb!important;}
+    .td-n{font-size:.8rem;color:var(--muted);}
+    .tag-i{display:inline-block;border-radius:5px;padding:2px 8px;font-size:.72rem;
+      font-weight:700;margin:2px;}
+    .ti-b{background:#dbeafe;color:#1d4ed8;}
+    .ti-g{background:#dcfce7;color:#15803d;}
+    .ti-a{background:#fef3c7;color:#b45309;}
+
+    /* 學習歷程占比長條圖 */
+    .bar-section{margin-bottom:10px;}
+    .bar-row{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+    .bar-label{font-size:.82rem;font-weight:600;width:160px;flex-shrink:0;line-height:1.3;}
+    .bar-track{flex:1;background:#f1f5f9;border-radius:999px;height:28px;overflow:hidden;position:relative;}
+    .bar-fill{height:100%;border-radius:999px;display:flex;align-items:center;
+      padding-left:12px;font-size:.78rem;font-weight:700;color:#fff;white-space:nowrap;
+      transition:width .6s ease;}
+    .bar-pct{font-size:.82rem;font-weight:700;width:60px;flex-shrink:0;text-align:right;}
+    .bar-sub{font-size:.75rem;color:var(--muted);margin-left:172px;margin-bottom:6px;line-height:1.5;}
+
+    /* ⑤ 時間軸 */
+    .timeline{position:relative;padding-left:36px;}
+    .timeline::before{content:'';position:absolute;left:12px;top:8px;bottom:8px;
+      width:2px;background:var(--border);}
+    .tl-item{position:relative;margin-bottom:18px;}
+    .tl-dot{position:absolute;left:-30px;top:12px;width:14px;height:14px;border-radius:50%;
+      border:2px solid;background:var(--card);}
+    .tl-dot.blue  {border-color:var(--primary);background:#eff6ff;}
+    .tl-dot.green {border-color:var(--g);background:#f0fdf4;}
+    .tl-dot.amber {border-color:var(--accent);background:#fffbeb;}
+    .tl-dot.purple{border-color:#7e22ce;background:#fdf4ff;}
+    .tl-body{background:var(--card);border-radius:12px;border:1px solid var(--border);
+      padding:14px 18px;box-shadow:0 2px 8px rgba(37,99,235,0.05);}
+    .tl-date{font-size:.75rem;font-weight:700;margin-bottom:4px;}
+    .tl-date.blue  {color:var(--primary);}
+    .tl-date.green {color:var(--g);}
+    .tl-date.amber {color:#b45309;}
+    .tl-date.purple{color:#7e22ce;}
+    .tl-title{font-size:.92rem;font-weight:700;}
+    .tl-desc{font-size:.8rem;color:var(--muted);margin-top:3px;}
+    .tl-group{margin-bottom:28px;}
+    .tl-month{font-size:.8rem;font-weight:800;color:var(--muted);letter-spacing:.08em;
+      margin-bottom:12px;text-transform:uppercase;}
+    .tl-cols{display:grid;grid-template-columns:1fr 1fr;gap:0 28px;}
+
+    /* TABS */
+    .tabs{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap;}
+    .tb{padding:9px 20px;border-radius:999px;border:2px solid var(--border);background:var(--card);
+      color:var(--muted);font-size:.88rem;font-weight:600;cursor:pointer;transition:all .2s;}
+    .tb.active{background:var(--primary);color:#fff;border-color:var(--primary);
+      box-shadow:0 4px 14px rgba(37,99,235,.28);}
+    .tp{display:none;}
+    .tp.active{display:block;animation:fadeUp .28s ease;}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+    /* CHANNEL CARDS */
+    .ch{background:var(--card);border-radius:var(--r);border:1px solid var(--border);
+      box-shadow:var(--shadow);padding:28px 30px;}
+    .ch h2{font-size:1.15rem;font-weight:800;margin-bottom:8px;}
+    .ch-badge{display:inline-block;border-radius:8px;padding:4px 14px;font-size:.76rem;
+      font-weight:700;margin-bottom:16px;}
+    .badge-b{background:#eff6ff;color:var(--primary);}
+    .badge-g{background:#f0fdf4;color:var(--g);}
+    .badge-a{background:#fff7ed;color:#c2410c;}
+    .badge-p{background:#fdf4ff;color:#7e22ce;}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
+    .ib{background:#f8fafc;border-radius:12px;border:1px solid var(--border);padding:18px;}
+    .ib h4{font-size:.76rem;font-weight:700;color:var(--muted);letter-spacing:.06em;
+      text-transform:uppercase;margin-bottom:10px;}
+    .sl-list{list-style:none;}
+    .sl-list li{display:flex;gap:9px;align-items:flex-start;padding:6px 0;font-size:.88rem;
+      border-bottom:1px solid var(--border);}
+    .sl-list li:last-child{border-bottom:none;}
+    .sn{width:20px;height:20px;border-radius:50%;background:var(--primary);color:#fff;
+      font-size:.68rem;font-weight:800;display:flex;align-items:center;justify-content:center;
+      flex-shrink:0;margin-top:3px;}
+    .sn.g{background:var(--g);}
+    .warn{background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:12px 16px;
+      margin-top:14px;display:flex;gap:10px;align-items:flex-start;font-size:.86rem;}
+    .tip {background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:12px 16px;
+      margin-top:12px;display:flex;gap:10px;font-size:.86rem;color:#166534;}
+
+    .key{background:linear-gradient(135deg,#1e40af,#0ea5e9);border-radius:var(--r);
+      padding:28px 34px;color:#fff;display:flex;gap:18px;align-items:center;margin-top:40px;}
+    .key .big{font-size:2.8rem;flex-shrink:0;}
+    .key h3{font-size:1rem;font-weight:800;margin-bottom:5px;}
+    .key p{font-size:.88rem;opacity:.9;}
+
+    footer{background:#1e293b;color:rgba(255,255,255,.55);text-align:center;
+      padding:36px 24px;font-size:.86rem;line-height:2;}
+    footer strong{color:#fff;}
+
+    @media(max-width:760px){
+      .hero{padding:100px 24px 38px;}
+      .scenario-grid{grid-template-columns:1fr;}
+      .two-col{grid-template-columns:1fr;}
+      .tl-cols{grid-template-columns:1fr;}
+      .bar-label{width:110px;}
+      .bar-sub{margin-left:122px;}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nb" href="index.html">🏫 高一2班 親師座談會</a>
+  <a class="back" href="index.html">← 返回首頁</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-in">
+    <div class="h-tag">04 ADMISSION</div>
+    <h1>升學介紹</h1>
+    <p>116學年度 大學多元入學 · 完整說明</p>
+  </div>
+</div>
+
+<div class="body">
+
+  <!-- ① 入學途徑架構圖 -->
+  <div class="sl">① 入學途徑架構圖</div>
+  <div class="card">
+    <div style="font-size:.78rem;color:var(--muted);text-align:center;margin-bottom:22px;letter-spacing:.04em">
+      資料來源：116學年度大學多元入學手冊（教育部）
+    </div>
+
+    <div class="arch">
+      <!-- 考試層 -->
+      <div class="arch-row">
+        <div class="arch-label">統一考試</div>
+        <div class="arch-boxes">
+          <div class="abox ab-teal">
+            英語聽力測驗<br>
+            <span class="ab-note">兩次擇優<br>115/10・12</span>
+          </div>
+          <div class="abox ab-blue" style="flex:1.6">
+            學科能力測驗（學測）<br>
+            <span class="ab-note">國文・英文・數A・數B・社會・自然 6科<br>116/1/22–1/24</span>
+          </div>
+          <div class="abox ab-amber">
+            術科考試<br>
+            <span class="ab-note">音樂・美術・體育<br>116/1/26–1/31</span>
+          </div>
+          <div class="abox ab-purple" style="flex:1.6">
+            分科測驗<br>
+            <span class="ab-note">數甲・數乙・物理・化學・生物<br>歷史・地理・公民 8科｜116/7/10–7/11</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="arch-arrows">
+        <span style="min-width:90px;max-width:90px"></span>
+        <span style="color:var(--muted);">↓</span>
+        <span style="color:var(--muted);">↓</span>
+        <span style="color:var(--muted);">↓</span>
+        <span style="color:var(--muted);">↓</span>
+      </div>
+
+      <div class="arch-divider"></div>
+
+      <!-- 招生層 -->
+      <div class="arch-row" style="margin-top:8px">
+        <div class="arch-label">入學管道</div>
+        <div class="arch-boxes">
+          <div class="abox ab-green" style="flex:1.3">
+            ⭐ 繁星推薦<br>
+            <span class="ab-note">甄選會辦理<br>116/3–6月</span>
+          </div>
+          <div class="abox ab-blue" style="flex:1.6">
+            📄 申請入學<br>
+            <span class="ab-note">甄選會辦理<br>116/3–6月</span>
+          </div>
+          <div class="abox ab-amber" style="flex:1.3">
+            📝 分發入學<br>
+            <span class="ab-note">考分會辦理<br>116/6–8月</span>
+          </div>
+          <div class="abox ab-purple" style="flex:1.1">
+            ✨ 特殊選才<br>
+            <span class="ab-note">各校自辦<br>每年10–12月</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arch-note">
+      ※ 繁星・申請入學採用<strong>學測</strong>成績 ／ 分發入學採用<strong>分科測驗</strong>（至少1科），部分校系可加計學測<br>
+      ※ 特殊選才各校自訂條件，每年10月底前公告簡章，次年1月放榜
+    </div>
+  </div>
+
+  <!-- ② 考試與管道對應 -->
+  <div class="sl">② 考什麼試、走哪條路</div>
+  <div class="scenario-grid">
+    <div class="sc-card blue">
+      <div class="sc-if">IF・只參加</div>
+      <div class="sc-exam">📋 學測</div>
+      <span class="sc-arr">↓</span>
+      <div class="sc-paths">
+        <span class="sc-path sp-g">⭐ 繁星推薦</span>
+        <span class="sc-path sp-b">📄 申請入學</span>
+      </div>
+      <div class="sc-limit">※ 若有意就讀需英聽檢定的校系，另須參加英聽</div>
+    </div>
+    <div class="sc-card green">
+      <div class="sc-if">IF・只參加</div>
+      <div class="sc-exam">📝 分科測驗</div>
+      <span class="sc-arr">↓</span>
+      <div class="sc-paths">
+        <span class="sc-path sp-p">📝 分發入學</span>
+      </div>
+      <div class="sc-limit">※ 僅可登記「不採計學測」之校系為志願</div>
+    </div>
+    <div class="sc-card both">
+      <div class="sc-if">IF・兩種都參加</div>
+      <div class="sc-exam">📋 學測 ＋ 📝 分科</div>
+      <span class="sc-arr">↓</span>
+      <div class="sc-paths">
+        <span class="sc-path sp-g">⭐ 繁星推薦</span>
+        <span class="sc-path sp-b">📄 申請入學</span>
+        <span class="sc-path sp-p">📝 分發入學</span>
+      </div>
+      <div class="sc-limit">✅ 三條路全部開放，彈性最大</div>
+    </div>
+  </div>
+
+  <!-- ④ 方案簡表 -->
+  <div class="sl">④ 三大管道方案簡表（摘自116手冊）</div>
+  <div style="overflow-x:auto">
+    <table class="comp-table" style="background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;">
+      <thead>
+        <tr>
+          <th style="width:88px;background:#f8fafc"></th>
+          <th class="th-s">⭐<br>繁星推薦</th>
+          <th class="th-a">📄<br>申請入學</th>
+          <th class="th-d">📝<br>分發入學</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="rh">承辦單位</td>
+          <td colspan="2" style="background:#f0fdf4;color:#15803d;font-weight:600;font-size:.84rem">大學甄選入學委員會（甄選會）</td>
+          <td style="background:#fff7ed;color:#c2410c;font-weight:600;font-size:.84rem">大學考試入學分發委員會（考分會）</td>
+        </tr>
+        <tr>
+          <td class="rh">採計考試</td>
+          <td>
+            <span class="tag-i ti-b">學測 ≤4科</span><br>
+            <span class="tag-i ti-a">術科（部分）</span><br>
+            <span class="tag-i">英聽（部分檢定）</span>
+          </td>
+          <td>
+            <span class="tag-i ti-b">學測 ≤4科</span><br>
+            <span class="tag-i ti-a">術科（部分）</span><br>
+            <span class="tag-i">英聽（部分檢定）</span><br>
+            <span class="tag-i" style="background:#f0fdf4;color:#15803d">APCS（部分）</span>
+          </td>
+          <td>
+            <span class="tag-i ti-b">學測（檢定/採計）</span><br>
+            <span class="tag-i ti-g">分科測驗 ≥1科</span><br>
+            <span class="tag-i ti-a">術科（部分）</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="rh">報名資格</td>
+          <td class="td-n">應屆生<br>在校成績<strong>校排達標</strong><br>高一至高三上共5學期</td>
+          <td class="td-n">通過學測/英聽/術科<br>校系檢定標準</td>
+          <td class="td-n">高中（職）畢業生或<br>具同等學力，通過<br>學力文件審查</td>
+        </tr>
+        <tr>
+          <td class="rh">校系數限制</td>
+          <td><strong>1個學群</strong></td>
+          <td><strong>最多6個校系</strong></td>
+          <td><strong>最多100個志願</strong></td>
+        </tr>
+        <tr>
+          <td class="rh">第一階段</td>
+          <td class="td-n">依學測/在校成績<br>分發比序</td>
+          <td class="td-n">學測篩選<br>（招生名額3倍率）</td>
+          <td class="td-n">學力文件審查</td>
+        </tr>
+        <tr>
+          <td class="rh">第二階段</td>
+          <td class="td-n">甄選會公告錄取</td>
+          <td class="td-n">書審 ＋ 面試/筆試/實作</td>
+          <td class="td-n">網路登記志願<br>→ 依序分發</td>
+        </tr>
+        <tr>
+          <td class="rh">⚠️ 注意</td>
+          <td class="td-w">錄取後<strong>不得</strong>參加申請入學</td>
+          <td class="td-w">學習歷程佔比<strong>≥50%</strong></td>
+          <td class="td-w">志願送出後<strong>不得更改</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ③ 學習歷程占比長條圖 -->
+  <div class="sl">申請入學 甄選總成績占分比例（長條圖）</div>
+  <div class="card">
+    <div style="font-size:.82rem;color:var(--muted);margin-bottom:24px">
+      依招聯會規定（109年3月通過），申請入學第二階段甄選總成績之構成比例如下：
+    </div>
+
+    <!-- 申請入學比例 -->
+    <div style="font-size:.88rem;font-weight:700;margin-bottom:14px;color:var(--text)">📄 申請入學 · 甄選總成績</div>
+
+    <div class="bar-row">
+      <div class="bar-label">學測成績</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:50%;background:linear-gradient(90deg,#2563eb,#3b82f6)">≤ 50%</div>
+      </div>
+      <div class="bar-pct" style="color:#2563eb">≤ 50%</div>
+    </div>
+    <div class="bar-sub">由各校系自訂採計科目（最多4科學測），占比不超過50%</div>
+
+    <div class="bar-row">
+      <div class="bar-label">綜合學習表現<br><span style="font-size:.72rem;font-weight:400">（P1＋P2）</span></div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:100%;background:linear-gradient(90deg,#10b981,#34d399)">≥ 50%（含以上）</div>
+      </div>
+      <div class="bar-pct" style="color:#10b981">≥ 50%</div>
+    </div>
+    <div class="bar-sub">包含 P1 學習歷程＋P2 校系自辦甄試（面試/筆試/實作）</div>
+
+    <div style="background:#f8fafc;border-radius:12px;border:1px solid var(--border);padding:18px;margin-top:20px;">
+      <div style="font-size:.82rem;font-weight:700;margin-bottom:10px">綜合學習表現內部規定（一般校系）：</div>
+
+      <div class="bar-row" style="margin-bottom:6px">
+        <div class="bar-label">P1 學習歷程</div>
+        <div class="bar-track" style="height:22px">
+          <div class="bar-fill" style="width:55%;background:#10b981;font-size:.72rem">P1 ≥ P2</div>
+        </div>
+        <div class="bar-pct" style="color:#10b981;font-size:.78rem">P1 較高</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">P2 校系甄試</div>
+        <div class="bar-track" style="height:22px">
+          <div class="bar-fill" style="width:45%;background:#f59e0b;font-size:.72rem">P2 ≤ P1</div>
+        </div>
+        <div class="bar-pct" style="color:#b45309;font-size:.78rem">P2 較低</div>
+      </div>
+
+      <div class="bar-sub" style="margin-top:6px">
+        規定：P1 ≥ P2，或 |P2－P1| ≤ 10%（一般校系擇一即可）<br>
+        <strong style="color:#dc2626">→ 學習歷程從高一就開始累積，三年影響甚大！</strong>
+      </div>
+    </div>
+
+    <!-- 繁星比較 -->
+    <div style="font-size:.88rem;font-weight:700;margin:28px 0 14px;color:var(--text)">⭐ 繁星推薦 · 分發比序依據</div>
+    <div class="bar-row">
+      <div class="bar-label">在校成績<br><span style="font-size:.72rem;font-weight:400">（5學期平均）</span></div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:75%;background:linear-gradient(90deg,#059669,#10b981)">主要依據</div>
+      </div>
+      <div class="bar-pct" style="color:#059669">主要</div>
+    </div>
+    <div class="bar-sub">高一、高二各學期 ＋ 高三上，共5學期學業成績總平均</div>
+    <div class="bar-row">
+      <div class="bar-label">學測成績</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:40%;background:#64748b">輔助比序</div>
+      </div>
+      <div class="bar-pct" style="color:#64748b">輔助</div>
+    </div>
+    <div class="bar-sub">學測成績作為第二層比序依據</div>
+  </div>
+
+  <!-- ⑤ 重要日程時間軸 -->
+  <div class="sl">⑤ 116學年度重要日程時間軸</div>
+  <div class="card">
+    <div style="font-size:.78rem;color:var(--muted);margin-bottom:24px">
+      以下日程摘自116大學多元入學手冊，以現在高一同學為參考（現為高一，116學年度就讀高三）
+    </div>
+
+    <div class="tl-cols">
+      <div>
+        <div class="tl-group">
+          <div class="tl-month">🔵 高三上學期（115年秋）</div>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-dot blue"></div>
+              <div class="tl-body">
+                <div class="tl-date blue">115 / 10 / 17</div>
+                <div class="tl-title">英語聽力測驗（第一次）</div>
+                <div class="tl-desc">兩次可自由選考，成績擇優使用</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot blue"></div>
+              <div class="tl-body">
+                <div class="tl-date blue">115 / 10 底前</div>
+                <div class="tl-title">特殊選才簡章公告</div>
+                <div class="tl-desc">各校自訂，10–12月辦理招生</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot blue"></div>
+              <div class="tl-body">
+                <div class="tl-date blue">115 / 12 / 12</div>
+                <div class="tl-title">英語聽力測驗（第二次）</div>
+                <div class="tl-desc">成績等級：A / B / C / F</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-group">
+          <div class="tl-month">🟢 高三下學期（116年春）</div>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-dot green"></div>
+              <div class="tl-body">
+                <div class="tl-date green">116 / 1 / 22–24</div>
+                <div class="tl-title">學科能力測驗（學測）</div>
+                <div class="tl-desc">國文・英文・數A・數B・社會・自然，共3天</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot green"></div>
+              <div class="tl-body">
+                <div class="tl-date green">116 / 1 / 26–31</div>
+                <div class="tl-title">術科考試</div>
+                <div class="tl-desc">音樂・美術・體育（有意就讀術科校系者）</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot green"></div>
+              <div class="tl-body">
+                <div class="tl-date green">116 / 3–6 月</div>
+                <div class="tl-title">繁星推薦</div>
+                <div class="tl-desc">第1-7類 116/3/22 放棄截止<br>第8類（醫牙） 116/6/13 放棄截止</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot green"></div>
+              <div class="tl-body">
+                <div class="tl-date green">116 / 3–6 月</div>
+                <div class="tl-title">申請入學</div>
+                <div class="tl-desc">116/5/31 公布錄取 → 6/3–4 登記志願序 → 6/10 分發結果<br>116/6/13 放棄截止</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="tl-group">
+          <div class="tl-month">🟠 分科測驗與分發（116年夏）</div>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-dot amber"></div>
+              <div class="tl-body">
+                <div class="tl-date amber">116 / 6 / 15 前</div>
+                <div class="tl-title">分科測驗報名截止</div>
+                <div class="tl-desc">申請入學未獲分發者，把握時間報名</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot amber"></div>
+              <div class="tl-body">
+                <div class="tl-date amber">116 / 6 / 18 前</div>
+                <div class="tl-title">上傳學力證明文件</div>
+                <div class="tl-desc">參加分發入學者，審查通過才可登記志願</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot amber"></div>
+              <div class="tl-body">
+                <div class="tl-date amber">116 / 7 / 10–11</div>
+                <div class="tl-title">分科測驗</div>
+                <div class="tl-desc">數甲・數乙・物理・化學・生物・歷史・地理・公民，共2天</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot amber"></div>
+              <div class="tl-body">
+                <div class="tl-date amber">116 / 7 / 29</div>
+                <div class="tl-title">寄發分科成績單</div>
+                <div class="tl-desc">可申請複查（7/29–8/3）</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot purple"></div>
+              <div class="tl-body">
+                <div class="tl-date purple">116 / 8 / 1–4</div>
+                <div class="tl-title">網路登記分發志願</div>
+                <div class="tl-desc">8/4 12:00前繳費完成；<strong>一次送出不可更改</strong></div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot purple"></div>
+              <div class="tl-body">
+                <div class="tl-date purple">116 / 8 / 13</div>
+                <div class="tl-title">🎉 分發入學錄取公告</div>
+                <div class="tl-desc">學期結束！</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 各管道詳細說明 -->
+  <div class="sl">各管道詳細說明</div>
+  <div class="tabs">
+    <button class="tb active" onclick="sw(event,'special')">✨ 特殊選才</button>
+    <button class="tb" onclick="sw(event,'star')">⭐ 繁星推薦</button>
+    <button class="tb" onclick="sw(event,'apply')">📄 申請入學</button>
+    <button class="tb" onclick="sw(event,'exam')">📝 分科測驗</button>
+  </div>
+
+  <div id="tp-special" class="tp active">
+    <div class="ch">
+      <h2>✨ 特殊選才</h2>
+      <span class="ch-badge badge-b">適合具特殊才能或非典型學習背景的學生</span>
+      <p style="color:var(--muted);font-size:.9rem;margin-bottom:14px">各大學自行規劃招生條件，提供具備特殊學術能力、藝術才能、特殊境遇或多元文化背景的學生入學機會。</p>
+      <ul class="sl-list">
+        <li><div class="sn">1</div><div>各大學自訂特選條件，由學生備妥資料向各校申請</div></li>
+        <li><div class="sn">2</div><div>書面審查 → 各校自辦面試或實作考核</div></li>
+        <li><div class="sn">3</div><div>原則上各校於每年10月底前公告簡章，10–12月辦理，次年1月放榜</div></li>
+      </ul>
+      <div class="warn"><span>💡</span><div>錄取後若未於規定期限內放棄，<strong>不得參加當學年度繁星・申請・分發入學</strong>，請審慎決定。</div></div>
+    </div>
+  </div>
+
+  <div id="tp-star" class="tp">
+    <div class="ch">
+      <h2>⭐ 繁星推薦</h2>
+      <span class="ch-badge badge-g">理念：高中均質 · 區域均衡，推動就近入學高中</span>
+      <div class="two-col">
+        <div class="ib">
+          <h4>✅ 報名資格</h4>
+          <ul class="sl-list">
+            <li><div class="sn">1</div><div>全程就讀同一高中應屆畢業生</div></li>
+            <li><div class="sn">2</div><div>高一、高二、高三上<strong>在校成績校排符合</strong>大學規定</div></li>
+            <li><div class="sn">3</div><div>採計 5 個學期成績之平均</div></li>
+            <li><div class="sn">4</div><div>每位學生僅能選<strong>一個學群</strong>被推薦</div></li>
+          </ul>
+        </div>
+        <div class="ib">
+          <h4>📋 分發流程</h4>
+          <ul class="sl-list">
+            <li><div class="sn">1</div><div>學校依校排推薦符合學生</div></li>
+            <li><div class="sn">2</div><div>需參加學測（成績作為比序）</div></li>
+            <li><div class="sn">3</div><div>第一輪：同校同一大學至多錄取1人</div></li>
+            <li><div class="sn">4</div><div>缺額再進行第二輪分發</div></li>
+          </ul>
+        </div>
+      </div>
+      <div class="warn"><span>⚠️</span><div><strong>重要！</strong>繁星第1–7類錄取後，無論有無放棄，皆<strong>不得參加申請入學</strong>！</div></div>
+    </div>
+  </div>
+
+  <div id="tp-apply" class="tp">
+    <div class="ch">
+      <h2>📄 申請入學</h2>
+      <span class="ch-badge badge-a">理念：適才適所，參採學習歷程多元表現選才</span>
+      <div class="two-col">
+        <div class="ib">
+          <h4>📋 三步驟</h4>
+          <ul class="sl-list">
+            <li><div class="sn">1</div><div><strong>先篩選</strong>：學測成績篩選（招生名額3倍率，至多50人）</div></li>
+            <li><div class="sn">2</div><div><strong>再甄試</strong>：書審 ＋ 第二階段面試/筆試/實作</div></li>
+            <li><div class="sn">3</div><div><strong>後分發</strong>：116/6/3–4 登記志願序 → 6/10 統一分發</div></li>
+          </ul>
+        </div>
+        <div class="ib">
+          <h4>📂 審查資料（上傳學習歷程）</h4>
+          <ul class="sl-list">
+            <li><div class="sn g">✓</div><div>學習成果（課程學習成果）</div></li>
+            <li><div class="sn g">✓</div><div>多元表現（含社會探究報告）</div></li>
+            <li><div class="sn g">✓</div><div>高中自主學習計畫與成果</div></li>
+            <li><div class="sn g">✓</div><div>學習歷程備審資料（<strong>非常關鍵！</strong>）</div></li>
+          </ul>
+        </div>
+      </div>
+      <div class="warn"><span>📌</span><div>最多申請 <strong>6個校系</strong>。甄選總成績中，<strong>學習歷程（P1）須 ≥ 面試等甄試（P2）</strong>，請從高一開始認真累積！</div></div>
+      <div class="tip"><span>💡</span><div>可至甄選會網站查詢各校系篩選標準：<a href="https://www.cac.edu.tw" target="_blank" style="color:var(--g)">cac.edu.tw</a></div></div>
+    </div>
+  </div>
+
+  <div id="tp-exam" class="tp">
+    <div class="ch">
+      <h2>📝 分科測驗（考試入學・分發入學）</h2>
+      <span class="ch-badge badge-p">理念：打破傳統類組，提供多元選擇及適性發展</span>
+      <div class="two-col">
+        <div class="ib">
+          <h4>📋 考試說明</h4>
+          <ul class="sl-list">
+            <li><div class="sn">1</div><div>共8科：數甲・數乙（114起新增）・物理・化學・生物・歷史・地理・公民</div></li>
+            <li><div class="sn">2</div><div>每科 <strong>80分鐘</strong>，各科最高 <strong>60級分</strong></div></li>
+            <li><div class="sn">3</div><div>部分校系以學測成績作「檢定」用途</div></li>
+            <li><div class="sn">4</div><div>可登記最多 <strong>100個志願</strong></div></li>
+          </ul>
+        </div>
+        <div class="ib">
+          <h4>⚠️ 應試注意</h4>
+          <ul class="sl-list">
+            <li><div class="sn">!</div><div>文具盒須<strong>無文字符號</strong>，墊板需透明</div></li>
+            <li><div class="sn">!</div><div>無准考證，須攜帶<strong>有效證件正本</strong>（身分證/健保卡）</div></li>
+            <li><div class="sn">!</div><div>手錶不可發聲、不可為智慧型裝置</div></li>
+            <li><div class="sn">!</div><div>志願登記一次送出，<strong>不得更改</strong></div></li>
+          </ul>
+        </div>
+      </div>
+      <div class="warn"><span>💡</span><div>現在高一最重要：<strong>打好國英數基礎</strong>，認真累積學習歷程，找到自己的興趣方向！</div></div>
+    </div>
+  </div>
+
+  <!-- 底部 Key -->
+  <div class="key">
+    <div class="big">🎯</div>
+    <div>
+      <h3>給高一同學的一句話</h3>
+      <p>無論走哪條升學管道，現在最重要的是：<strong>打好國英數基礎、認真累積學習歷程、找到自己的興趣方向。</strong><br>每一天的努力，都是通往理想大學的積累。</p>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:20px;font-size:.8rem;color:var(--muted)">
+    📖 完整資訊請參閱：<a href="https://nsdua.moe.edu.tw" target="_blank" style="color:var(--primary)">大學多元入學升學網 nsdua.moe.edu.tw</a>
+  </div>
+
+</div>
+
+<footer>
+  <strong>高一2班</strong> · 瀛海中學 · 親師座談會<br>
+  <span>資料來源：116學年度大學多元入學手冊（教育部）</span>
+</footer>
+
+<script>
+function sw(e, id) {
+  document.querySelectorAll('.tp').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tb').forEach(el => el.classList.remove('active'));
+  document.getElementById('tp-' + id).classList.add('active');
+  e.currentTarget.classList.add('active');
+}
+</script>
+</body>
+</html>

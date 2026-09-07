@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>導師介紹 · 高一2班</title>
+  <style>
+    :root {
+      --primary: #2563eb; --secondary: #0ea5e9;
+      --accent2: #10b981; --bg: #f8fafc; --card: #fff;
+      --text: #1e293b; --text-light: #64748b;
+      --border: #e2e8f0; --shadow: 0 4px 24px rgba(37,99,235,0.08); --radius: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans TC','Microsoft JhengHei',sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border); padding: 0 28px;
+      display: flex; align-items: center; justify-content: space-between; height: 60px;
+      box-shadow: 0 2px 12px rgba(37,99,235,0.07);
+    }
+    .nav-brand { font-weight: 700; font-size: 1.05rem; color: var(--primary); text-decoration: none; }
+    .nav-back {
+      display: flex; align-items: center; gap: 6px;
+      text-decoration: none; color: var(--text-light);
+      font-size: 0.88rem; font-weight: 500;
+      padding: 6px 14px; border-radius: 8px; transition: all 0.2s;
+    }
+    .nav-back:hover { background: #eff6ff; color: var(--primary); }
+
+    /* HERO */
+    .hero {
+      min-height: 52vh;
+      background:
+        linear-gradient(180deg,
+          rgba(255,255,255,0.20) 0%,
+          rgba(255,255,255,0.08) 60%,
+          rgba(255,255,255,0.25) 100%),
+        url('hero_bg.jpg') center 30% / cover no-repeat;
+      display: flex; align-items: flex-end; justify-content: flex-start;
+      padding: 100px 60px 52px;
+    }
+    .hero-inner { color: #1e293b; }
+    .hero-tag {
+      display: inline-block; background: rgba(255,255,255,0.80);
+      border: 1px solid rgba(255,255,255,0.95); border-radius: 999px;
+      padding: 4px 18px; font-size: 0.78rem; font-weight: 700;
+      letter-spacing: .1em; margin-bottom: 14px; color: #1e40af;
+      box-shadow: 0 2px 10px rgba(37,99,235,0.12);
+    }
+    .hero h1 { font-size: clamp(2.4rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.15;
+      color: #1e293b; text-shadow: 0 2px 12px rgba(255,255,255,0.9); }
+    .hero p { margin-top: 8px; font-size: 1rem; color: #334155; font-weight: 600;
+      text-shadow: 0 1px 8px rgba(255,255,255,0.9); }
+
+    /* CONTENT */
+    .page-body { max-width: 1000px; margin: 0 auto; padding: 56px 28px 80px; }
+
+    /* PROFILE CARD */
+    .profile-wrap { display: grid; grid-template-columns: 280px 1fr; gap: 28px; margin-bottom: 40px; }
+    .profile-card {
+      background: linear-gradient(145deg, #1e40af, #2563eb 55%, #0ea5e9);
+      border-radius: var(--radius); padding: 40px 28px;
+      display: flex; flex-direction: column; align-items: center; text-align: center; color: #fff;
+    }
+    .avatar {
+      width: 130px; height: 130px; border-radius: 50%;
+      border: 4px solid rgba(255,255,255,0.6);
+      object-fit: cover; margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    }
+    .p-name { font-size: 1.7rem; font-weight: 900; letter-spacing: .02em; }
+    .p-nick { font-size: 1rem; opacity: 0.8; margin-bottom: 4px; }
+    .p-role { font-size: 0.82rem; opacity: 0.7; margin-bottom: 22px; }
+    .p-tag {
+      display: inline-block; background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3); border-radius: 999px;
+      padding: 4px 14px; font-size: 0.78rem; font-weight: 600; margin: 3px;
+    }
+    .p-specialty {
+      margin-top: 22px; padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.25);
+      width: 100%; font-size: 0.82rem;
+    }
+    .p-specialty .label { opacity: 0.65; font-size: 0.72rem; letter-spacing: .08em; margin-bottom: 6px; }
+    .p-specialty .value { font-weight: 700; font-size: 0.9rem; }
+
+    /* EDU CARD */
+    .edu-card {
+      background: var(--card); border-radius: var(--radius);
+      border: 1px solid var(--border); box-shadow: var(--shadow);
+      padding: 28px 32px;
+    }
+    .edu-card h3 {
+      font-size: 0.8rem; font-weight: 700; color: var(--text-light);
+      letter-spacing: .1em; text-transform: uppercase; margin-bottom: 20px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .edu-card h3::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .edu-list { list-style: none; }
+    .edu-list li {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 14px 0; border-bottom: 1px solid var(--border);
+    }
+    .edu-list li:last-child { border-bottom: none; }
+    .edu-icon {
+      width: 38px; height: 38px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .ei-blue   { background: #eff6ff; }
+    .ei-green  { background: #f0fdf4; }
+    .ei-amber  { background: #fffbeb; }
+    .ei-purple { background: #fdf4ff; }
+    .ei-teal   { background: #f0fdfa; }
+    .edu-title { font-weight: 700; font-size: 0.97rem; color: var(--text); }
+    .edu-sub   { font-size: 0.8rem; color: var(--text-light); margin-top: 3px; line-height: 1.5; }
+    .highlight-note {
+      display: inline-block; background: #fffbeb; border: 1px solid #fde68a;
+      border-radius: 6px; padding: 2px 10px; font-size: 0.75rem;
+      color: #b45309; font-weight: 600; margin-top: 5px;
+    }
+
+    /* MGMT */
+    .mgmt-section { margin-bottom: 32px; }
+    .mgmt-title { font-size: 1rem; font-weight: 800; margin-bottom: 16px; padding-bottom: 10px;
+      border-bottom: 2px solid var(--border); display: flex; align-items: center; gap: 8px; }
+    .mgmt-card { background: var(--card); border-radius: var(--radius);
+      border: 1px solid var(--border); box-shadow: var(--shadow); padding: 24px 28px; margin-bottom: 16px; }
+    .mgmt-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .mgmt-list li { display: flex; gap: 12px; align-items: flex-start; font-size: .92rem; line-height: 1.7; }
+    .mgmt-dot { width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: .82rem; margin-top: 2px; }
+    .dot-blue   { background: #eff6ff; color: #2563eb; }
+    .dot-green  { background: #f0fdf4; color: #15803d; }
+    .dot-amber  { background: #fffbeb; color: #b45309; }
+    .dot-purple { background: #fdf4ff; color: #7e22ce; }
+    .mgmt-strong { font-weight: 700; }
+    .rule-box { background: #fef2f2; border: 1.5px solid #fca5a5;
+      border-radius: var(--radius); padding: 22px 28px; margin-top: 8px; }
+    .rule-title { font-size: .92rem; font-weight: 800; color: #dc2626; margin-bottom: 14px; }
+    .rule-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .rule-list li { display: flex; gap: 12px; align-items: flex-start; font-size: .92rem; line-height: 1.7; }
+    .rule-num { width: 26px; height: 26px; border-radius: 8px; flex-shrink: 0;
+      background: #dc2626; color: #fff;
+      display: flex; align-items: center; justify-content: center; font-size: .78rem; font-weight: 900; margin-top: 2px; }
+
+    footer {
+      background: #1e293b; color: rgba(255,255,255,0.55);
+      text-align: center; padding: 36px 24px;
+      font-size: 0.86rem; line-height: 2;
+    }
+    footer strong { color: #fff; }
+
+    @media (max-width: 700px) {
+      .hero { padding: 100px 24px 40px; }
+      .profile-wrap { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html">🏫 高一2班 親師座談會</a>
+  <a class="nav-back" href="index.html">← 返回首頁</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">01 TEACHER</div>
+    <h1>導師介紹</h1>
+    <p>高一2班 · 瀛海中學</p>
+  </div>
+</div>
+
+<div class="page-body">
+
+  <!-- 個人卡片 + 學歷 -->
+  <div class="profile-wrap">
+    <div class="profile-card">
+      <img src="導師頭像.png" alt="Miffy 老師" class="avatar">
+      <div class="p-name">林明芬 老師</div>
+      <div class="p-nick">Miffy</div>
+      <div class="p-role">高一2班導師</div>
+      <div>
+        <span class="p-tag">英語教學</span>
+        <span class="p-tag">國際教育</span>
+        <span class="p-tag">課程設計</span>
+      </div>
+      <div class="p-specialty">
+        <div class="label">SPECIALTY · 專長</div>
+        <div class="value">✏️ 課程設計</div>
+      </div>
+    </div>
+
+    <div class="edu-card">
+      <h3>學歷與經歷</h3>
+      <ul class="edu-list">
+        <li>
+          <div class="edu-icon ei-blue">🎓</div>
+          <div>
+            <div class="edu-title">輔仁大學英語系</div>
+            <div class="edu-sub">英語語言文學學士</div>
+          </div>
+        </li>
+        <li>
+          <div class="edu-icon ei-blue">📖</div>
+          <div>
+            <div class="edu-title">中正大學外文所</div>
+            <div class="edu-sub">外國語文學研究所</div>
+          </div>
+        </li>
+        <li>
+          <div class="edu-icon ei-purple">📖</div>
+          <div>
+            <div class="edu-title">中正大學英語教學所</div>
+            <div class="edu-sub">英語教學研究所（TESOL）</div>
+          </div>
+        </li>
+        <li>
+          <div class="edu-icon ei-teal">🌏</div>
+          <div>
+            <div class="edu-title">新加坡南洋理工大學（NTU）</div>
+            <div class="edu-sub">National Institute of Education<br>赴新加坡進修英語教學</div>
+          </div>
+        </li>
+        <li>
+          <div class="edu-icon ei-amber">🏫</div>
+          <div>
+            <div class="edu-title">瀛海中學雙語實驗班導師</div>
+            <div class="edu-sub">深耕雙語教育，擔任導師 5 年</div>
+          </div>
+        </li>
+        <li>
+          <div class="edu-icon ei-green">🏆</div>
+          <div>
+            <div class="edu-title">與國外校際合作線上教學計畫 · 入選</div>
+            <div class="edu-sub">跨國線上協作教學，連結國際校際資源</div>
+            <div class="highlight-note">📣 2025.2.21 受邀於師大分享</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 教學理念 -->
+  <div class="philosophy">
+    <h3>TEACHING PHILOSOPHY · 教學理念</h3>
+    <p>
+      專長課程設計，致力於打造有趣、有深度的英語學習環境，讓每位同學都能在課堂中找到自己的節奏，自信開口、勇敢表達。
+    </p>
+  </div>
+
+</div>
+
+<footer>
+  <strong>高一2班</strong> · 瀛海中學<br>
+  <span>親師座談會</span>
+</footer>
+
+</body>
+</html>

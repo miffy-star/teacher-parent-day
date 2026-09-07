@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>115-1 行事曆重點 · 高一2班</title>
+  <style>
+    :root {
+      --primary: #2563eb; --accent2: #10b981; --accent: #f59e0b;
+      --bg: #f8fafc; --card: #fff; --text: #1e293b; --text-light: #64748b;
+      --border: #e2e8f0; --shadow: 0 4px 24px rgba(37,99,235,0.08); --radius: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans TC','Microsoft JhengHei',sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border); padding: 0 28px;
+      display: flex; align-items: center; justify-content: space-between; height: 60px;
+      box-shadow: 0 2px 12px rgba(37,99,235,0.07);
+    }
+    .nav-brand { font-weight: 700; font-size: 1.05rem; color: var(--primary); text-decoration: none; }
+    .nav-back { display: flex; align-items: center; gap: 6px; text-decoration: none; color: var(--text-light);
+      font-size: 0.88rem; font-weight: 500; padding: 6px 14px; border-radius: 8px; transition: all 0.2s; }
+    .nav-back:hover { background: #eff6ff; color: var(--primary); }
+    .hero {
+      min-height: 42vh;
+      background: linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.08) 60%, rgba(255,255,255,0.22) 100%),
+        url('hero_bg.jpg') center 30% / cover no-repeat;
+      display: flex; align-items: flex-end; padding: 100px 60px 48px;
+    }
+    .hero-inner { color: #1e293b; }
+    .hero-tag {
+      display: inline-block; background: rgba(255,255,255,0.82); border: 1px solid rgba(255,255,255,0.95);
+      border-radius: 999px; padding: 4px 18px; font-size: 0.78rem; font-weight: 700;
+      letter-spacing: .1em; margin-bottom: 14px; color: #b45309;
+    }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.8rem); font-weight: 900; color: #1e293b;
+      text-shadow: 0 2px 12px rgba(255,255,255,0.9); }
+    .hero p { margin-top: 8px; font-size: 1rem; color: #334155; font-weight: 600;
+      text-shadow: 0 1px 8px rgba(255,255,255,0.9); }
+    .page-body { max-width: 960px; margin: 0 auto; padding: 52px 28px 80px; }
+    .sec-label {
+      font-size: 0.78rem; font-weight: 700; color: var(--text-light);
+      letter-spacing: .1em; text-transform: uppercase; margin: 36px 0 18px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .sec-label::after { content:''; flex:1; height:1px; background: var(--border); }
+    .event-grid { display: flex; flex-direction: column; gap: 10px; }
+    .event-item {
+      display: grid; grid-template-columns: 90px 1fr;
+      background: var(--card); border-radius: 12px;
+      border: 1px solid var(--border); overflow: hidden;
+      box-shadow: 0 2px 10px rgba(37,99,235,0.05);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .event-item:hover { transform: translateX(4px); box-shadow: 0 4px 18px rgba(37,99,235,0.10); }
+    .event-date {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 14px 10px; text-align: center; font-weight: 800;
+    }
+    .event-date .month { font-size: 0.7rem; letter-spacing: .08em; margin-bottom: 2px; }
+    .event-date .day { font-size: 1.4rem; line-height: 1; }
+    .event-body { padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; }
+    .event-title { font-size: 0.95rem; font-weight: 700; }
+    .event-desc { font-size: 0.82rem; color: var(--text-light); margin-top: 2px; }
+    /* colors */
+    .c-exam  .event-date { background: #eff6ff; color: #1d4ed8; }
+    .c-health .event-date { background: #f0fdf4; color: #15803d; }
+    .c-act   .event-date { background: #fff7ed; color: #c2410c; }
+    .c-meet  .event-date { background: #fdf4ff; color: #7e22ce; }
+    .c-warn  .event-date { background: #fffbeb; color: #b45309; }
+    .tag {
+      display: inline-block; border-radius: 999px; padding: 2px 10px;
+      font-size: 0.72rem; font-weight: 700; margin-right: 6px; margin-bottom: 4px;
+    }
+    .tag-exam   { background: #eff6ff; color: #1d4ed8; }
+    .tag-health { background: #f0fdf4; color: #15803d; }
+    .tag-act    { background: #fff7ed; color: #c2410c; }
+    .tag-meet   { background: #fdf4ff; color: #7e22ce; }
+    .note-box {
+      background: #fffbeb; border: 1px solid #fde68a; border-radius: 12px;
+      padding: 18px 22px; margin-top: 32px; font-size: 0.88rem; display: flex; gap: 12px;
+    }
+    footer { background: #1e293b; color: rgba(255,255,255,0.55); text-align: center; padding: 36px 24px; font-size: 0.86rem; line-height: 2; }
+    footer strong { color: #fff; }
+    @media (max-width:600px) { .hero { padding: 100px 24px 36px; } .event-item { grid-template-columns: 70px 1fr; } }
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="index.html">🏫 高一2班 親師座談會</a>
+  <a class="nav-back" href="index.html">← 返回首頁</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">115-1 CALENDAR</div>
+    <h1>行事曆重點</h1>
+    <p>瀛海中學 115 學年度第一學期 · 高一相關重要事項</p>
+  </div>
+</div>
+
+<div class="page-body">
+
+  <div class="note-box">
+    <span style="font-size:1.3rem;flex-shrink:0">📌</span>
+    <div>以下摘錄自學校 <strong>115-1 行事曆</strong>（115.8.11 修訂版），僅列出與高一學生及家長直接相關之評量、健康、活動事項，供家長掌握學期重點節點。完整行事曆請以學校公告為準。</div>
+  </div>
+
+  <!-- 9月 -->
+  <div class="sec-label">九月</div>
+  <div class="event-grid">
+    
+    </div>
+    <div class="event-item c-meet">
+      <div class="event-date"><div class="month">SEP</div><div class="day">12</div></div>
+      <div class="event-body">
+        <div class="event-title">👨‍👩‍👧 親師座談會</div>
+        <div class="event-desc"><span class="tag tag-meet">家長</span>9/12 行事曆正式列載親師座談會</div>
+      </div>
+    </div>
+    <div class="event-item c-exam">
+      <div class="event-date"><div class="month">SEP</div><div class="day">6-8</div></div>
+      <div class="event-body">
+        <div class="event-title">📝 第一次段考（10/6–10/8）</div>
+        <div class="event-desc"><span class="tag tag-exam">評量</span>高一第一次定期考查，測驗週</div>
+      </div>
+    </div>
+    
+    </div>
+  </div>
+
+  <!-- 10月 -->
+  <div class="sec-label">十月</div>
+  <div class="event-grid">
+    <div class="event-item c-exam">
+      <div class="event-date"><div class="month">OCT</div><div class="day">6–8</div></div>
+      <div class="event-body">
+        <div class="event-title">📝 第一次段考</div>
+        <div class="event-desc"><span class="tag tag-exam">評量</span>第一次定期考查 · 10/9 國慶補假</div>
+      </div>
+    </div>
+    <div class="event-item c-meet">
+      <div class="event-date"><div class="month">OCT</div><div class="day">23</div></div>
+      <div class="event-body">
+        <div class="event-title">📋 高一學習歷程檔案說明會（第三、四節）</div>
+        <div class="event-desc"><span class="tag tag-meet">重要</span>高一同學學習歷程建立說明，請提醒孩子專注聆聽</div>
+      </div>
+    </div>
+    <div class="event-item c-health">
+      <div class="event-date"><div class="month">OCT</div><div class="day">30</div></div>
+      <div class="event-body">
+        <div class="event-title">💉 流感疫苗接種</div>
+        <div class="event-desc"><span class="tag tag-health">健康</span>10/30 流感疫苗接種，若有特殊狀況請提前告知學校</div>
+      </div>
+    </div>
+    <div class="event-item c-meet">
+      <div class="event-date"><div class="month">OCT</div><div class="day">24</div></div>
+      <div class="event-body">
+        <div class="event-title">🎓 高三多元入學與繁星推薦說明（下午3點）</div>
+        <div class="event-desc"><span class="tag tag-meet">升學</span>高三為主，高一可提前了解升學制度</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11月 -->
+  <div class="sec-label">十一月</div>
+  <div class="event-grid">
+    <div class="event-item c-exam">
+      <div class="event-date"><div class="month">NOV</div><div class="day">23–25</div></div>
+      <div class="event-body">
+        <div class="event-title">📝 第二次段考</div>
+        <div class="event-desc"><span class="tag tag-exam">評量</span>第二次定期考查</div>
+      </div>
+    </div>
+    <div class="event-item c-health">
+      <div class="event-date"><div class="month">NOV</div><div class="day">4</div></div>
+      <div class="event-body">
+        <div class="event-title">🏥 高一新生健康檢查</div>
+        <div class="event-desc"><span class="tag tag-health">健康</span>11/4（四）高一新生健康檢查，請確認孩子攜帶健保卡</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12月 -->
+  <div class="sec-label">十二月 ／ 一月</div>
+  <div class="event-grid">
+    <div class="event-item c-exam">
+      <div class="event-date"><div class="month">JAN</div><div class="day">15</div></div>
+      <div class="event-body">
+        <div class="event-title">📝 第三次段考（1/15）</div>
+        <div class="event-desc"><span class="tag tag-exam">評量</span>第三次定期考查，次週 1/18–1/19 亦有段考區間</div>
+      </div>
+    </div>
+    <div class="event-item c-act">
+      <div class="event-date"><div class="month">DEC</div><div class="day">31</div></div>
+      <div class="event-body">
+        <div class="event-title">🎵 歲末祈福音樂會</div>
+        <div class="event-desc"><span class="tag tag-act">活動</span>12/31 全校歲末音樂會，歡迎家長共襄盛舉</div>
+      </div>
+    </div>
+    <div class="event-item c-act">
+      <div class="event-date"><div class="month">JAN</div><div class="day">20</div></div>
+      <div class="event-body">
+        <div class="event-title">🏆 結業典禮 ＋ 期末校務會議</div>
+        <div class="event-desc"><span class="tag tag-act">學期末</span>1/20 結業典禮，學期正式結束</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 學期評量一覽 -->
+  <div class="sec-label">學期三次評量一覽</div>
+  <div style="background:var(--card);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden;">
+    <table style="width:100%;border-collapse:collapse;font-size:0.9rem">
+      <thead>
+        <tr style="background:#f1f5f9">
+          <th style="padding:12px 18px;text-align:left;font-size:0.78rem;color:var(--text-light);letter-spacing:.06em">次別</th>
+          <th style="padding:12px 18px;text-align:left;font-size:0.78rem;color:var(--text-light);letter-spacing:.06em">日期</th>
+          <th style="padding:12px 18px;text-align:left;font-size:0.78rem;color:var(--text-light);letter-spacing:.06em">備註</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-top:1px solid var(--border)">
+          <td style="padding:13px 18px;font-weight:700">第一次段考</td>
+          <td style="padding:13px 18px">10/6（一）– 10/8（三）</td>
+          <td style="padding:13px 18px;color:var(--text-light);font-size:0.85rem">10/9 國慶補假</td>
+        </tr>
+        <tr style="border-top:1px solid var(--border);background:#fafafa">
+          <td style="padding:13px 18px;font-weight:700">第二次段考</td>
+          <td style="padding:13px 18px">11/23（日）– 11/25（二）</td>
+          <td style="padding:13px 18px;color:var(--text-light);font-size:0.85rem">—</td>
+        </tr>
+        <tr style="border-top:1px solid var(--border)">
+          <td style="padding:13px 18px;font-weight:700">第三次段考</td>
+          <td style="padding:13px 18px">1/15（四）/ 1/18–19</td>
+          <td style="padding:13px 18px;color:var(--text-light);font-size:0.85rem">1/20 結業典禮</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note-box" style="margin-top:28px;background:#f0fdf4;border-color:#bbf7d0">
+    <span style="font-size:1.3rem;flex-shrink:0">💡</span>
+    <div style="color:#166534">
+      <strong>給家長的溫馨提醒</strong><br>
+      ① 11/4 高一健康檢查請備妥健保卡<br>
+      ② 10/23 學習歷程說明會是高一重要活動，請鼓勵孩子認真了解<br>
+      ② 三次段考前後請多給孩子正向支持，避免過度施壓
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <strong>高一2班</strong> · 瀛海中學 · 親師座談會<br>
+  資料來源：瀛海高中 115-1 行事曆（115.8.11 修訂）
+</footer>
+</body>
+</html>

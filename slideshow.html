@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>高一2班 親師座談會 · 開場</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; height: 100%; overflow: hidden;
+      background: #000; font-family: 'Noto Sans TC','Microsoft JhengHei',sans-serif; }
+
+    #slideshow { position: fixed; inset: 0; background: #111; }
+    .slide {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      opacity: 0; transition: opacity 1.4s ease;
+    }
+    .slide.active { opacity: 1; animation: kb 8s ease-in-out forwards; }
+    @keyframes kb {
+      0%   { transform: scale(1.0) translate(0%, 0%); }
+      100% { transform: scale(1.08) translate(-1.5%, -1%); }
+    }
+
+    #overlay {
+      position: fixed; inset: 0; z-index: 10;
+      background: linear-gradient(to top,
+        rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.08) 50%, rgba(0,0,0,0.22) 100%);
+    }
+
+    #topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 20;
+      padding: 24px 40px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo-wrap { display: flex; align-items: center; gap: 14px; }
+    .logo-box {
+      width: 50px; height: 50px; border-radius: 50%;
+      background: rgba(255,255,255,0.15); border: 1.5px solid rgba(255,255,255,0.3);
+      display: flex; align-items: center; justify-content: center; font-size: 1.7rem;
+      backdrop-filter: blur(8px);
+    }
+    .logo-text { color: #fff; font-size: .92rem; font-weight: 700;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.5); line-height: 1.5; }
+    .logo-sub { font-size: .75rem; opacity: .72; font-weight: 400; }
+    #clock { color: rgba(255,255,255,0.88); font-size: 1.6rem; font-weight: 200;
+      letter-spacing: .1em; text-shadow: 0 1px 10px rgba(0,0,0,0.5);
+      font-variant-numeric: tabular-nums; }
+
+    #bottombar {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 20;
+      padding: 32px 48px 44px;
+    }
+    .caption-wrap { display: flex; align-items: flex-end; justify-content: space-between; }
+    .ev-tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.35);
+      backdrop-filter: blur(8px); border-radius: 999px;
+      padding: 5px 20px; font-size: .8rem; font-weight: 700; color: #fff;
+      letter-spacing: .1em; margin-bottom: 16px;
+    }
+    .ev-title { font-size: clamp(2.2rem,5.5vw,4rem); font-weight: 900; color: #fff;
+      line-height: 1.1; text-shadow: 0 2px 24px rgba(0,0,0,0.65); }
+    .ev-sub { font-size: 1.05rem; color: rgba(255,255,255,0.82);
+      margin-top: 10px; text-shadow: 0 1px 10px rgba(0,0,0,0.55); }
+
+    #dots { display: flex; gap: 8px; align-items: center; padding-bottom: 6px; flex-wrap: wrap; max-width: 320px; justify-content: flex-end; }
+    .dot { width: 7px; height: 7px; border-radius: 50%;
+      background: rgba(255,255,255,0.35); transition: all .35s; cursor: pointer; }
+    .dot.active { background: #fff; width: 20px; border-radius: 4px; }
+
+    #controls {
+      position: fixed; bottom: 52px; left: 50%; transform: translateX(-50%);
+      z-index: 30; display: flex; gap: 12px; align-items: center;
+    }
+    .cb {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3);
+      color: #fff; font-size: 1.15rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s; backdrop-filter: blur(8px);
+    }
+    .cb:hover { background: rgba(255,255,255,0.3); transform: scale(1.1); }
+
+    #enter-btn {
+      position: fixed; bottom: 44px; right: 48px; z-index: 30;
+      background: rgba(255,255,255,0.92); color: #1e293b;
+      border: none; border-radius: 14px;
+      padding: 16px 32px; font-size: 1rem; font-weight: 800;
+      cursor: pointer; display: flex; align-items: center; gap: 10px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 28px rgba(0,0,0,0.35); transition: all .2s;
+    }
+    #enter-btn:hover { background: #fff; transform: translateY(-3px) scale(1.04); }
+    .arr { font-size: 1.2rem; transition: transform .2s; }
+    #enter-btn:hover .arr { transform: translateX(6px); }
+
+    #progress-bar {
+      position: fixed; bottom: 0; left: 0; height: 3px;
+      background: linear-gradient(90deg,#38bdf8,#818cf8); z-index: 40;
+    }
+
+    #photo-count {
+      position: fixed; top: 28px; left: 50%; transform: translateX(-50%);
+      z-index: 20; color: rgba(255,255,255,0.6); font-size: .82rem;
+      background: rgba(0,0,0,0.3); padding: 4px 14px; border-radius: 999px;
+      backdrop-filter: blur(8px);
+    }
+  </style>
+</head>
+<body>
+
+<div id="slideshow"></div>
+<div id="overlay"></div>
+
+<div id="topbar">
+  <div class="logo-wrap">
+    <div class="logo-box">🏫</div>
+    <div class="logo-text">
+      瀛海高中
+      <div class="logo-sub">高一2班 親師座談會</div>
+    </div>
+  </div>
+  <div id="clock">--:--:--</div>
+</div>
+
+<div id="photo-count">1 / 27</div>
+
+<div id="bottombar">
+  <div class="caption-wrap">
+    <div>
+      <div class="ev-tag">115 學年度 · 第一學期</div>
+      <div class="ev-title">高一2班<br>親師座談會</div>
+      <div class="ev-sub">感謝家長撥冗蒞臨，歡迎入座 ❤️</div>
+    </div>
+    <div id="dots"></div>
+  </div>
+</div>
+
+<div id="controls">
+  <button class="cb" onclick="prevSlide()" title="上一張">&#8249;</button>
+  <button class="cb" id="btn-play" onclick="togglePlay()" title="暫停/播放">&#9208;</button>
+  <button class="cb" onclick="nextSlide()" title="下一張">&#8250;</button>
+</div>
+
+<div id="progress-bar" style="width:0%"></div>
+
+<button id="enter-btn" onclick="location.href='index.html'">
+  開始簡報 <span class="arr">&#8594;</span>
+</button>
+
+<script>
+const PHOTO_LIST = [
+  '導師頭像.png',
+  'slides/photo_01.jpg',
+  'slides/photo_02.jpg',
+  'slides/photo_03.jpg',
+  'slides/photo_04.jpg',
+  'slides/photo_05.jpg',
+  'slides/photo_06.jpg',
+  'slides/photo_07.jpg',
+  'slides/photo_08.jpg',
+  'slides/photo_09.jpg',
+  'slides/photo_10.jpg',
+  'slides/photo_11.jpg',
+  'slides/photo_12.jpg',
+  'slides/photo_13.jpg',
+  'slides/photo_14.jpg',
+  'slides/photo_15.jpg',
+  'slides/photo_16.jpg',
+  'slides/photo_17.jpg',
+  'slides/photo_18.jpg',
+  'slides/photo_19.jpg',
+  'slides/photo_20.jpg',
+  'slides/photo_21.jpg',
+  'slides/photo_22.jpg',
+  'slides/photo_23.jpg',
+  'slides/photo_24.jpg',
+  'slides/photo_25.jpg',
+  'slides/photo_26.jpg',
+];
+
+const INTERVAL = 6;
+
+function tick() {
+  const n = new Date();
+  const f = v => String(v).padStart(2,'0');
+  document.getElementById('clock').textContent = f(n.getHours())+':'+f(n.getMinutes())+':'+f(n.getSeconds());
+}
+setInterval(tick, 1000); tick();
+
+let cur=0, playing=true, timer=null, raf=null, t0=null;
+const ss=document.getElementById('slideshow');
+const dotsEl=document.getElementById('dots');
+const pb=document.getElementById('progress-bar');
+const cntEl=document.getElementById('photo-count');
+
+function build() {
+  PHOTO_LIST.forEach((src,i) => {
+    const sl=document.createElement('div');
+    sl.className='slide'+(i===0?' active':'');
+    sl.style.backgroundImage="url('"+src+"')";
+    ss.appendChild(sl);
+    const d=document.createElement('div');
+    d.className='dot'+(i===0?' active':'');
+    d.onclick=()=>goTo(i);
+    dotsEl.appendChild(d);
+  });
+  startProg(); schedule();
+}
+
+function getSlides() { return ss.querySelectorAll('.slide'); }
+function getDots()   { return dotsEl.querySelectorAll('.dot'); }
+
+function goTo(idx) {
+  const sls=getSlides(), ds=getDots();
+  sls[cur].classList.remove('active');
+  ds[cur]&&ds[cur].classList.remove('active');
+  void sls[cur].offsetWidth;
+  cur=((idx%sls.length)+sls.length)%sls.length;
+  sls[cur].classList.add('active');
+  ds[cur]&&ds[cur].classList.add('active');
+  cntEl.textContent=(cur+1)+' / '+sls.length;
+  resetProg();
+  if(playing){ clearTimeout(timer); schedule(); }
+}
+function nextSlide() { goTo(cur+1); }
+function prevSlide() { goTo(cur-1); }
+function schedule() { clearTimeout(timer); timer=setTimeout(()=>{ if(playing) nextSlide(); }, INTERVAL*1000); }
+function togglePlay() {
+  playing=!playing;
+  document.getElementById('btn-play').innerHTML=playing?'&#9208;':'&#9654;';
+  if(playing){ schedule(); startProg(); }
+  else{ clearTimeout(timer); cancelAnimationFrame(raf); }
+}
+function startProg() { t0=performance.now(); animProg(); }
+function resetProg() { cancelAnimationFrame(raf); pb.style.width='0%'; if(playing) startProg(); }
+function animProg() {
+  const pct=Math.min(100,(performance.now()-t0)/(INTERVAL*1000)*100);
+  pb.style.width=pct+'%';
+  if(pct<100) raf=requestAnimationFrame(animProg);
+}
+
+document.addEventListener('keydown', e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowDown') nextSlide();
+  else if(e.key==='ArrowLeft'||e.key==='ArrowUp') prevSlide();
+  else if(e.key===' '){ e.preventDefault(); togglePlay(); }
+  else if(e.key==='Enter') location.href='index.html';
+});
+
+build();
+</script>
+</body>
+</html>
