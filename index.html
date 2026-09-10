@@ -165,7 +165,7 @@
     .pp-teal   { background: #f0fdfa; border-color: #99f6e4; color: #0f766e; }
 
     /* COOPERATION */
-    .coop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
+    .coop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 14px; }
     .coop-item {
       background: #f8fafc; border-radius: 12px; padding: 18px 20px;
       border: 1px solid var(--border); transition: transform 0.2s, box-shadow 0.2s;
@@ -173,9 +173,9 @@
     .coop-item:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(37,99,235,0.09); }
     .coop-item.highlight { background: #fffbeb; border-color: #fde68a; grid-column: 1 / -1; }
     .coop-icon { font-size: 1.3rem; margin-bottom: 8px; }
-    .coop-title { font-weight: 700; font-size: 0.92rem; margin-bottom: 4px; }
-    .coop-desc { font-size: 0.83rem; color: var(--text-light); }
-    .coop-item.highlight .coop-desc { color: #92400e; font-size: 0.9rem; }
+    .coop-title { font-weight: 700; font-size: 0.92rem; margin-bottom: 4px; text-wrap: pretty; }
+    .coop-desc { font-size: 0.83rem; color: var(--text-light); text-wrap: pretty; line-height: 1.7; }
+    .coop-item.highlight .coop-desc { color: #92400e; font-size: 0.9rem; text-wrap: pretty; }
 
     /* ADMISSION TABS */
     .tabs { display: flex; gap: 8px; margin-bottom: 26px; flex-wrap: wrap; }
