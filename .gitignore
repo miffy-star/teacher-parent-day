@@ -1,0 +1,10 @@
+.DS_Store
+*.HEIC
+*.heic
+*.rtf
+.netlify/
+.wrangler/
+README.txt
+slides/README.txt
+IMG_*.JPG
+IMG_*.PNG
