@@ -12,7 +12,7 @@
     }
     *{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
-    body{font-family:'Noto Sans TC','Microsoft JhengHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
+    body{font-size:24px;font-family:'Noto Sans TC','Microsoft JhengHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.9;}
 
     nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.95);
       backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 28px;
@@ -36,7 +36,7 @@
     .hero p{margin-top:8px;font-size:1rem;color:#334155;font-weight:600;
       text-shadow:0 1px 8px rgba(255,255,255,.9);}
 
-    .body{max-width:1020px;margin:0 auto;padding:56px 28px 90px;}
+    .body{font-size:24px;max-width:1020px;margin:0 auto;padding:56px 28px 90px;}
 
     /* SECTION LABEL */
     .sl{font-size:.78rem;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;
@@ -125,7 +125,7 @@
     .tl-dot.green {border-color:var(--g);background:#f0fdf4;}
     .tl-dot.amber {border-color:var(--accent);background:#fffbeb;}
     .tl-dot.purple{border-color:#7e22ce;background:#fdf4ff;}
-    .tl-body{background:var(--card);border-radius:12px;border:1px solid var(--border);
+    .tl-body{font-size:24px;background:var(--card);border-radius:12px;border:1px solid var(--border);
       padding:14px 18px;box-shadow:0 2px 8px rgba(37,99,235,0.05);}
     .tl-date{font-size:.75rem;font-weight:700;margin-bottom:4px;}
     .tl-date.blue  {color:var(--primary);}
@@ -618,6 +618,45 @@
         <li><div class="sn">2</div><div>書面審查 → 各校自辦面試或實作考核</div></li>
         <li><div class="sn">3</div><div>原則上各校於每年10月底前公告簡章，10–12月辦理，次年1月放榜</div></li>
       </ul>
+
+      <!-- 台南大學範例 -->
+      <div style="margin-top:22px;background:#f0fdf4;border:2px solid #86efac;border-radius:14px;padding:24px 28px;">
+        <div style="font-size:.72rem;font-weight:800;color:#15803d;letter-spacing:.1em;margin-bottom:10px;">🎓 實際範例 · 台南大學國語文學系（116學年度）</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+          <div style="background:#fff;border-radius:10px;padding:16px 18px;border:1px solid #bbf7d0;">
+            <div style="font-weight:800;color:#15803d;margin-bottom:8px;">📅 重要時程</div>
+            <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;font-size:.85rem;">
+              <li>📌 <strong>報名期間</strong>：115/9/21 – 10/19</li>
+              <li>🎤 <strong>面試日期</strong>：115/11/20–11/21</li>
+              <li>📢 <strong>放榜</strong>：115/12/14</li>
+              <li>📱 <strong>報名方式</strong>：全程網路電子化上傳</li>
+            </ul>
+          </div>
+          <div style="background:#fff;border-radius:10px;padding:16px 18px;border:1px solid #bbf7d0;">
+            <div style="font-weight:800;color:#15803d;margin-bottom:8px;">✅ 符合資格（符合一項即可）</div>
+            <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;font-size:.85rem;">
+              <li>✍️ 語文類全國競賽（作文・演說・朗讀）獲獎</li>
+              <li>📚 文學創作成果（作品集・得獎紀錄）</li>
+              <li>🖌️ 書法篆刻全國性比賽前三名</li>
+              <li>💡 其他特殊語文學習成就</li>
+            </ul>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div style="background:#fff;border-radius:10px;padding:14px 18px;border:1px solid #bbf7d0;font-size:.85rem;">
+            <div style="font-weight:800;margin-bottom:6px;">📂 招生組別</div>
+            <p>🔹 <strong>一般組</strong>：一般生<br>🔹 <strong>願景計畫組</strong>：經濟不利學生優先</p>
+          </div>
+          <div style="background:#fff;border-radius:10px;padding:14px 18px;border:1px solid #bbf7d0;font-size:.85rem;">
+            <div style="font-weight:800;margin-bottom:6px;">🔗 官方連結</div>
+            <p><a href="https://admissions.nutn.edu.tw/sRecruit/" target="_blank" style="color:#15803d;font-weight:700;">📋 台南大學特選報名系統</a><br>
+            <a href="https://chinese.nutn.edu.tw/" target="_blank" style="color:#15803d;font-weight:700;">🏫 國語文學系官網</a></p>
+          </div>
+        </div>
+        <div style="margin-top:12px;background:#fef9c3;border-radius:8px;padding:10px 16px;font-size:.82rem;color:#854d0e;">
+          ⚠️ 以上資料依116學年度簡章整理，名額請見正式簡章。如孩子有語文競賽、創作或書法特殊表現，歡迎詢問導師。
+        </div>
+      </div>
       <div class="warn"><span>💡</span><div>錄取後若未於規定期限內放棄，<strong>不得參加當學年度繁星・申請・分發入學</strong>，請審慎決定。</div></div>
     </div>
   </div>
@@ -671,6 +710,61 @@
             <li><div class="sn g">✓</div><div>高中自主學習計畫與成果</div></li>
             <li><div class="sn g">✓</div><div>學習歷程備審資料（<strong>非常關鍵！</strong>）</div></li>
           </ul>
+        </div>
+      </div>
+
+      <!-- 台南大學範例 -->
+      <div style="margin-top:22px;background:#eff6ff;border:2px solid #93c5fd;border-radius:14px;padding:24px 28px;">
+        <div style="font-size:.72rem;font-weight:800;color:#1d4ed8;letter-spacing:.1em;margin-bottom:10px;">🎓 實際範例 · 台南大學國語文學系（以115為例，116待簡章公告）</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;">
+          <div style="background:#fff;border-radius:10px;padding:16px;border:1px solid #bfdbfe;text-align:center;">
+            <div style="font-size:1.5rem;font-weight:900;color:#2563eb;">35名</div>
+            <div style="font-size:.78rem;color:var(--muted);margin-top:4px;">招生名額<br>（＋離島1、原住民4）</div>
+          </div>
+          <div style="background:#fff;border-radius:10px;padding:16px;border:1px solid #bfdbfe;text-align:center;">
+            <div style="font-size:1.5rem;font-weight:900;color:#2563eb;">均標</div>
+            <div style="font-size:.78rem;color:var(--muted);margin-top:4px;">國文科<br>學測門檻</div>
+          </div>
+          <div style="background:#fff;border-radius:10px;padding:16px;border:1px solid #bfdbfe;text-align:center;">
+            <div style="font-size:1.5rem;font-weight:900;color:#2563eb;">3 / 5倍</div>
+            <div style="font-size:.78rem;color:var(--muted);margin-top:4px;">國文3倍 /<br>國英社合計5倍篩選</div>
+          </div>
+        </div>
+        <div style="background:#fff;border-radius:10px;padding:18px;border:1px solid #bfdbfe;margin-bottom:14px;">
+          <div style="font-weight:800;color:#1d4ed8;margin-bottom:12px;">📊 甄選總成績比例</div>
+          <div style="display:flex;gap:8px;align-items:stretch;">
+            <div style="flex:3;background:#dbeafe;border-radius:8px;padding:12px;text-align:center;">
+              <div style="font-size:1.4rem;font-weight:900;color:#1d4ed8;">30%</div>
+              <div style="font-size:.8rem;margin-top:4px;">學測成績<br><span style="font-size:.72rem;color:var(--muted);">國文×2、英文×1、社會×1</span></div>
+            </div>
+            <div style="flex:3;background:#e0f2fe;border-radius:8px;padding:12px;text-align:center;">
+              <div style="font-size:1.4rem;font-weight:900;color:#0369a1;">30%</div>
+              <div style="font-size:.8rem;margin-top:4px;">審查資料<br><span style="font-size:.72rem;color:var(--muted);">學習歷程上傳</span></div>
+            </div>
+            <div style="flex:4;background:#f0fdf4;border-radius:8px;padding:12px;text-align:center;border:2px solid #86efac;">
+              <div style="font-size:1.4rem;font-weight:900;color:#15803d;">40%</div>
+              <div style="font-size:.8rem;margin-top:4px;"><strong>面試</strong><br><span style="font-size:.72rem;color:var(--muted);">佔比最高，非常重要！</span></div>
+            </div>
+          </div>
+        </div>
+        <div style="background:#fff;border-radius:10px;padding:14px 18px;border:1px solid #bfdbfe;font-size:.85rem;margin-bottom:12px;">
+          <div style="font-weight:800;margin-bottom:8px;">📋 面試同分時，依序看：</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span style="background:#dbeafe;color:#1d4ed8;padding:5px 14px;border-radius:999px;font-weight:700;">① 國文級分</span>
+            <span style="color:var(--muted);">→</span>
+            <span style="background:#dbeafe;color:#1d4ed8;padding:5px 14px;border-radius:999px;font-weight:700;">② 面試成績</span>
+            <span style="color:var(--muted);">→</span>
+            <span style="background:#dbeafe;color:#1d4ed8;padding:5px 14px;border-radius:999px;font-weight:700;">③ 學測總和</span>
+            <span style="color:var(--muted);">→</span>
+            <span style="background:#dbeafe;color:#1d4ed8;padding:5px 14px;border-radius:999px;font-weight:700;">④ 審查資料</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <a href="https://www.cac.edu.tw" target="_blank" style="flex:1;background:#2563eb;color:#fff;padding:12px;border-radius:10px;text-align:center;text-decoration:none;font-weight:700;font-size:.85rem;">🔗 甄選委員會官網<br><span style="font-size:.72rem;opacity:.8;">查詢各系篩選標準</span></a>
+          <a href="https://chinese.nutn.edu.tw/" target="_blank" style="flex:1;background:#0ea5e9;color:#fff;padding:12px;border-radius:10px;text-align:center;text-decoration:none;font-weight:700;font-size:.85rem;">🏫 台南大學國語文學系<br><span style="font-size:.72rem;opacity:.8;">系所官網</span></a>
+        </div>
+        <div style="margin-top:12px;background:#fef9c3;border-radius:8px;padding:10px 16px;font-size:.82rem;color:#854d0e;">
+          ⚠️ 以115學年度資料為例說明，116學年度正式簡章公告後請至甄選會網站確認最新數據。
         </div>
       </div>
       <div class="warn"><span>📌</span><div>最多申請 <strong>6個校系</strong>。甄選總成績中，<strong>學習歷程（P1）須 ≥ 面試等甄試（P2）</strong>，請從高一開始認真累積！</div></div>
