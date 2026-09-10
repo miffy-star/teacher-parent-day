@@ -26,9 +26,9 @@
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border); padding: 0 24px;
+      border-bottom: 1px solid var(--border); padding: 10px 24px;
       display: flex; align-items: center; justify-content: space-between;
-      height: 60px; box-shadow: 0 2px 12px rgba(37,99,235,0.07);
+      min-height: 60px; box-shadow: 0 2px 12px rgba(37,99,235,0.07);
     }
     .nav-brand { font-weight: 700; font-size: 1.1rem; color: var(--primary); }
     .nav-links { display: flex; gap: 4px; list-style: none; }
@@ -213,7 +213,7 @@
     .ec-green { background: #f0fdf4; border-color: #bbf7d0; color: var(--accent2); }
 
     /* SUBJECTS */
-    .subject-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 20px; }
+    .subject-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 20px; }
     .subject-card {
       background: var(--card); border-radius: var(--radius);
       border: 1px solid var(--border); overflow: hidden;
@@ -226,7 +226,7 @@
       display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0;
     }
     .subject-name { font-size: 1.15rem; font-weight: 800; }
-    .subject-body {font-size:40px; padding: 0 22px 22px; }
+    .subject-body { padding: 0 22px 22px; }
     .method-list { list-style: none; }
     .method-list li {
       padding: 7px 0; font-size: 0.89rem; color: var(--text);
