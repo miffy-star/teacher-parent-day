@@ -195,7 +195,7 @@ function tick() {
 }
 setInterval(tick, 1000); tick();
 
-let cur=0, playing=true, timer=null, raf=null, t0=null;
+let cur=0, playing=false, timer=null, raf=null, t0=null;
 const ss=document.getElementById('slideshow');
 const dotsEl=document.getElementById('dots');
 const pb=document.getElementById('progress-bar');
@@ -212,7 +212,8 @@ function build() {
     d.onclick=()=>goTo(i);
     dotsEl.appendChild(d);
   });
-  startProg(); schedule();
+  // 預設暫停：顯示播放按鈕
+  document.getElementById('btn-play').innerHTML='&#9654;';
 }
 
 function getSlides() { return ss.querySelectorAll('.slide'); }
