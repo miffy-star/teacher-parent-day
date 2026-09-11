@@ -59,8 +59,16 @@
     }
     .ev-title { font-size: clamp(2.2rem,5.5vw,4rem); font-weight: 900; color: #fff;
       line-height: 1.1; text-shadow: 0 2px 24px rgba(0,0,0,0.65); }
-    .ev-sub { font-size: 1.05rem; color: rgba(255,255,255,0.82);
-      margin-top: 10px; text-shadow: 0 1px 10px rgba(0,0,0,0.55); }
+    .ev-welcome {
+      font-size: clamp(1.1rem, 2.8vw, 1.8rem); font-weight: 700;
+      color: #fff; margin-top: 16px; line-height: 1.6;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.7);
+      animation: breathe 3s ease-in-out infinite;
+    }
+    @keyframes breathe {
+      0%, 100% { opacity: 0.85; text-shadow: 0 2px 16px rgba(0,0,0,0.7); }
+      50%       { opacity: 1;    text-shadow: 0 2px 28px rgba(56,189,248,0.6), 0 0 40px rgba(56,189,248,0.25); }
+    }
 
     #dots { display: flex; gap: 8px; align-items: center; padding-bottom: 6px; flex-wrap: wrap; max-width: 320px; justify-content: flex-end; }
     .dot { width: 7px; height: 7px; border-radius: 50%;
@@ -129,7 +137,7 @@
     <div>
       <div class="ev-tag">115 學年度 · 第一學期</div>
       <div class="ev-title">高一2班<br>親師座談會</div>
-      <div class="ev-sub">感謝家長撥冗蒞臨，歡迎入座 ❤️</div>
+      <div class="ev-welcome">歡迎高一2班家長蒞臨<br>座談會即將開始，感謝撥冗出席 ❤️</div>
     </div>
     <div id="dots"></div>
   </div>
